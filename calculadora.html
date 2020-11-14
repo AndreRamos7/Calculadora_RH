@@ -85,6 +85,11 @@
             float: left;
             margin: 10px;
         }
+            
+        .active, .btn:hover {
+            background-color: #666;
+            color: white;
+        }
 
     </style>
     
@@ -92,8 +97,8 @@
 <body>
     <div id="content">        
         <div id="abas" class="calcs">
-            <a href="javascript:;" id="aba1" class="abas_itens">CH proporcional - professor</a>
-            <a  href="javascript:;"  id="aba2" class="abas_itens">Calculadora de dias</a>            
+            <a href="javascript:;" id="aba1" class="abas_itens btn active">CH proporcional - professor</a>
+            <a  href="javascript:;"  id="aba2" class="abas_itens btn ">Calculadora de dias</a>            
         </div>
         <div id="folhas" class="calcs">
             <div id="conteudo_folha1" class="conteudos">        
@@ -165,8 +170,22 @@
     <!-- ##################################################################################################### -->
     <!-- #########################################   SCRIPTS  ################################################ -->
     <!-- ##################################################################################################### -->
+
+    <script>
+        // Add active class to the current button (highlight it)
+        var header = document.getElementById("content");
+        var btns = header.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].addEventListener("click", function() {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+          });
+        }
+    </script>
+
     <script type="text/javascript">
-        var campos = document.getElementsByClassName("campos_txt");
+        //var campos = document.getElementsByClassName("campos_txt");
         var elemento_data_de_lotacao = document.getElementById("data_de_lotacao");
         var elemento_ch_anterior = document.getElementById("ch_anterior");
         var elemento_ch_nova = document.getElementById("nova_ch");
@@ -208,6 +227,7 @@
 		document.getElementById("conteudo_folha2").style.display = "block";
 
 		document.getElementById("aba1").addEventListener("click", function(){
+            
 			document.getElementById("conteudo_folha2").style.display = "none";
 			document.getElementById("conteudo_folha1").style.display = "block";
 		});
