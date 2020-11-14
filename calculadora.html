@@ -76,7 +76,10 @@
         input#data_atual{
             background-color: chocolate;
         }
-
+        .linhas{
+            display: flex;
+            margin: 10px;
+        }
         .colunas{
             display: block;
             float: left;
@@ -111,31 +114,50 @@
                 </form> 
             </div>
             <div id="conteudo_folha2"  class="conteudos">        
-                <form action="javascript:;" id="" class="colunas">                     
-                    <label for="data_atual" >Data atual:</label><br>
-                    <input class="campos_txt"  type="text" id="data_atual" name="data_atual" value="" autofocus autocomplete="off" readonly><br>                    
-                    <label for="data_inicial1">Data Inicial:</label><br>
-                    <input class="campos_txt" type="text" id="data_inicial1" name="ch_anterior" value="" autocomplete="off"><br>
-                    <label for="data_inicial2">Data Inicial:</label><br>
-                    <input class="campos_txt" type="text" id="data_inicial2" name="ch_anterior" value="" autocomplete="off"><br><br>                    
+                <form action="javascript:;" id="" class="linhas">   
+                    <div class="colunas">                  
+                        <label for="data_atual" >Data atual:</label><br>
+                        <input class="campos_txt"  type="text" id="data_atual" name="data_atual" value=""  autocomplete="off" readonly><br>
+                    </div > 
+                    <div class="colunas">                   
+                        <label for="num_dias1" >Número de dias:</label><br>
+                        <input class="campos_txt"  type="text" id="num_dias1" name="num_dias1" value="" autofocus autocomplete="off"><br>
+                    </div > 
+                    <div class="colunas">                   
+                        <label for="data_prevista1" >Data Prevista:</label><br>
+                        <input class="campos_txt"  type="text" id="data_prevista1" name="data_prevista1" value="" readonly autocomplete="off"><br>                    
+                    </div >                             
                 </form> 
-
-                <form action="javascript:;" id="" class="colunas">                    
-                    <label for="num_dias1" >Número de dias:</label><br>
-                    <input class="campos_txt"  type="text" id="num_dias1" name="num_dias1" value=""  autocomplete="off"><br>                    
-                    <label for="num_dias2">Data Inicial:</label><br>
-                    <input class="campos_txt" type="text" id="num_dias2" name="num_dias2" value="" autocomplete="off"><br>
-                    <label for="data_final">Data Final:</label><br>
-                    <input class="campos_txt" type="text" id="data_final" name="data_final" value="" autocomplete="off"><br><br>                    
+                
+                <form action="javascript:;" id="" class="linhas">                  
+                    <div class="colunas">  
+                        <label for="data_inicial1">Data Inicial:</label><br>
+                        <input class="campos_txt" type="text" id="data_inicial1" name="ch_anterior" value="" autocomplete="off"><br>
+                    </div > 	
+                    <div class="colunas">     
+                        <label for="num_dias2">Número de dias:</label><br>
+                        <input class="campos_txt" type="text" id="num_dias2" name="num_dias2" value="" autocomplete="off"><br>
+                    </div > 
+                    <div class="colunas"> 
+                        <label for="data_prevista2">Data Prevista:</label><br>
+                        <input class="campos_txt" type="text" id="data_prevista2" name="data_prevista2" value="" autocomplete="off"><br>
+                    </div > 	                        
                 </form> 
-
-                <form action="javascript:;" id="" class="colunas">                    
-                    <label for="data_prevista1" >Data atual:</label><br>
-                    <input class="campos_txt"  type="text" id="data_prevista1" name="data_prevista1" value=""  autocomplete="off"><br>                    
-                    <label for="data_prevista2">Data Inicial:</label><br>
-                    <input class="campos_txt" type="text" id="data_prevista2" name="data_prevista2" value="" autocomplete="off"><br>
-                    <label for="num_dias3">Data Inicial:</label><br>
-                    <input class="campos_txt" type="text" id="num_dias3" name="num_dias3" value="" autocomplete="off"><br><br>                    
+                
+                <form action="javascript:;" id="" class="linhas">  
+                    <div class="colunas">  
+                        <label for="data_inicial2">Data Inicial:</label><br>
+                        <input class="campos_txt" type="text" id="data_inicial2" name="ch_anterior" value="" autocomplete="off"><br><br>
+                    </div>  
+                    <div class="colunas"> 
+                        <label for="data_final">Data Final:</label><br>
+                        <input class="campos_txt" type="text" id="data_final" name="data_final" value="" autocomplete="off"><br><br> 
+                    </div >
+                    <div class="colunas"> 
+                        <label for="num_dias3">Número de dias:</label><br>
+                        <input class="campos_txt" type="text" id="num_dias3" name="num_dias3" value="" autocomplete="off"><br><br>        
+                    </div > 
+                    
                 </form> 
             </div>
         </div>
@@ -182,8 +204,8 @@
     </script>
 
     <script type="text/javascript">        
-       document.getElementById("conteudo_folha1").style.display = "block";
-		document.getElementById("conteudo_folha2").style.display = "none";
+       document.getElementById("conteudo_folha1").style.display = "none";
+		document.getElementById("conteudo_folha2").style.display = "block";
 
 		document.getElementById("aba1").addEventListener("click", function(){
 			document.getElementById("conteudo_folha2").style.display = "none";
@@ -211,19 +233,18 @@
         calcular2();
         
         // ADICIONA EVENTOS AOS CAMPOS DE TEXTO
-        elemento_data_atual.addEventListener("keyup", calcular2);
-        elemento_data_inicial1.addEventListener("keyup", calcular2);
-        elemento_data_inicial2.addEventListener("keyup", calcular2); 
+        //elemento_data_atual.addEventListener("keyup", calcular2);
+        elemento_data_inicial1.addEventListener("keyup", calcular3);
+        elemento_data_inicial2.addEventListener("keyup", calcular4); 
 
         elemento_num_dias1.addEventListener("keyup", calcular2); 
-        elemento_num_dias2.addEventListener("keyup", calcular2); 
-        elemento_data_final.addEventListener("keyup", calcular2); 
+        elemento_num_dias2.addEventListener("keyup", calcular3); 
+        elemento_data_final.addEventListener("keyup", calcular4); 
 
-        elemento_data_prevista1.addEventListener("keyup", calcular2); 
-        elemento_data_prevista2.addEventListener("keyup", calcular2); 
-        elemento_num_dias3.addEventListener("keyup", calcular2);
+        //elemento_data_prevista1.addEventListener("keyup", calcular2); 
+        elemento_data_prevista2.addEventListener("keyup", calcular3); 
+        elemento_num_dias3.addEventListener("keyup", calcular4);
         
-        //elemento_data_de_lotacao.focus();
         
         function calcular2() {
             // pega a data de hoje e mostra no campo de texto
@@ -236,22 +257,50 @@
             
             var num_dias1 = parseInt(elemento_num_dias1.value);
             data_atual.setDate(data_atual.getDate() + num_dias1 - 1);
-            var data_prevista1 = [data_atual.getDate(), "/", data_atual.getMonth()+1, "/", data_atual.getFullYear()].join('');
+            dia = (!isNaN(data_atual.getDate()))? data_atual.getDate(): "";
+            mes = (!isNaN(data_atual.getMonth() + 1))? data_atual.getMonth() + 1: "";
+            ano = (!isNaN(data_atual.getFullYear()))? data_atual.getFullYear(): "";
+
+            var data_prevista1 = [dia, "/", mes, "/", ano].join('');
             elemento_data_prevista1.value = data_prevista1;
-
-            var num_dias2 = parseInt(elemento_num_dias2.value);
-
-            var array_data_inicial1 = elemento_data_inicial1.value.split("/");   
-            var dia_ini1 = array_data_inicial1[0];
-            var mes_ini1 = array_data_inicial1[1];
-            var ano_ini1 = array_data_inicial1[2];
-
-            var data_ins = new Date( [mes, "/", dia, "/", ano].join('') );
-            var hoje = new Date();
-            var diferenca = Math.abs(data_ins.getTime() - hoje.getTime());
-            var dias = Math.ceil(diferenca / (1000 * 60 * 60 * 24));
-
             
+        }
+
+        function calcular3() {
+            var array_data_inicial1 = elemento_data_inicial1.value.split("/");   
+            var dia = array_data_inicial1[0];
+            var mes = array_data_inicial1[1];
+            var ano = array_data_inicial1[2];
+                        
+            var num_dias2 = parseInt(elemento_num_dias2.value);
+            var data_ins = new Date( [mes, "/", dia, "/", ano].join('') );            
+            data_ins.setDate(data_ins.getDate() + num_dias2 - 1);  
+            dia = (!isNaN(data_ins.getDate()))? data_ins.getDate(): "";
+            mes = (!isNaN(data_ins.getMonth() + 1))? data_ins.getMonth() + 1: "";
+            ano = (!isNaN(data_ins.getFullYear()))? data_ins.getFullYear(): "";
+            var data_prevista2 = [dia, "/", mes, "/", ano].join('');
+            elemento_data_prevista2.value = data_prevista2;
+           
+        }
+
+        function calcular4() {
+            var array_data_inicial2 = elemento_data_inicial2.value.split("/");   
+            var dia_ini = array_data_inicial2[0];
+            var mes_ini = array_data_inicial2[1];
+            var ano_ini = array_data_inicial2[2];
+
+            var array_data_final = elemento_data_final.value.split("/");   
+            var dia_fim = array_data_final[0];
+            var mes_fim = array_data_final[1];
+            var ano_fim = array_data_final[2];
+            
+            var data_ini = new Date( [mes_ini, "/", dia_ini, "/", ano_ini].join('') );            
+            var data_fim = new Date( [mes_fim, "/", dia_fim, "/", ano_fim].join('') );            
+
+            var diferenca = Math.abs(data_fim.getTime() - data_ini.getTime());
+            var dias = Math.ceil(diferenca / (1000 * 60 * 60 * 24));
+            elemento_num_dias3.value = !isNaN(dias)? dias: "--";
+
         }
 
     </script>
