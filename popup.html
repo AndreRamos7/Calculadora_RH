@@ -7,7 +7,8 @@
         #content{
             display: block;
             background-color: rgb(69, 114, 116);
-            border: 5px solid rgb(2, 24, 54);
+            /*border: 0px solid rgb(2, 24, 54);*/
+            box-shadow: -5px -6px 2px #dcc0c0;
             border-radius: 9px;
             padding: 20px;
 			width: 350px;
@@ -24,9 +25,9 @@
         .abas_itens{
             display: block;
             background-color: rgb(19, 102, 30);
-            border-top: 1px solid black;       
-            border-left: 1px solid black;       
-            border-right: 1px solid black;       
+            border-top: 1px solid rgb(124, 72, 72);       
+            border-left: 1px solid rgb(124, 72, 72);       
+            border-right: 1px solid rgb(124, 72, 72);       
             border-radius: 5px 5px 0 0;
             padding: 5px;
             width: auto;
@@ -35,21 +36,28 @@
             float: left;
             color: black;
             font-size: 12px;
-            font-weight: bold;
+            font-weight: bold;            
         }
         #aba1{
             background-color: #65b4b7;
-            margin-left: 10px;
+            margin-right: 10px; 
+            margin-left: 10px; 
         }
         #conteudo_folha1{
             background-color: #65b4b7;
         }
         #aba2{ 
-            background-color: #a6e4d6;
-            
+            background-color: #a6e4d6;                       
         }
         #conteudo_folha2{
             background-color: #a6e4d6;            
+            height: 230px;
+        }
+        #aba3{ 
+            background-color: #d1e0ff;                       
+        }
+        #conteudo_folha3{
+            background-color: #d1e0ff;            
             height: 230px;
         }        
         #folhas{
@@ -61,7 +69,8 @@
             float: none;
         }
         .conteudos{
-            padding: 10px;
+            padding: 10px;            
+            box-shadow: 0px -3px 10px grey;
         }
 
         label{
@@ -69,7 +78,7 @@
             font-size: small;
             min-height: 15px;
         }
-        input[type="text"]{
+        input[type="text"], input[type="number"]{
             display: block;
             border: 1px solid black;
             height: 15px;
@@ -102,25 +111,28 @@
 			margin-top: 10px;
 			margin-bottom: 0px;
 		}
+        span#msg{
+            color: red;
+        }
     </style>
 </head>
 <body>
     <div id="content">        
-        <div id="abas" class="calcs">
-            <a  href="#"  id="aba2" class="abas_itens">Calculadora de dias</a>    
+        <div id="abas" class="calcs">            
+            <a  href="#"  id="aba2" class="abas_itens">Calculadora de datas</a>    
             <a href="#" id="aba1" class="abas_itens">CH proporcional</a>
-                    
+            <a  href="#"  id="aba3" class="abas_itens">Lembretes</a>    
         </div>
-        <div id="folhas" class="calcs">            
+        <div id="folhas" class="calcs">                        
             <div id="conteudo_folha2"  class="conteudos">        
                 <form action="#" id="" class="linhas">   
                     <div class="colunas">                  
-                        <label for="data_atual" >Data atual:</label>
+                        <label for="data_atual" >HOJE:</label>
                         <input class="campos_txt  resultado"  type="text" id="data_atual" name="data_atual" value=""  autocomplete="off" readonly>
                     </div > 
                     <div class="colunas">                   
                         <label for="num_dias1" >Nº de dias:</label>
-                        <input class="campos_txt"  type="text" id="num_dias1" name="num_dias1" value="" autofocus autocomplete="off">
+                        <input class="campos_txt"  type="number" id="num_dias1" name="num_dias1" value="" autofocus autocomplete="off">
                     </div > 
                     <div class="colunas">                   
                         <label for="data_prevista1" >Data Prevista:</label>
@@ -130,12 +142,12 @@
                 
                 <form action="#" id="" class="linhas">                  
                     <div class="colunas">  
-                        <label for="data_inicial1">Data Inicial:</label>
-                        <input class="campos_txt" type="text" id="data_inicial1" name="ch_anterior" value="" autocomplete="off">
+                        <label for="data_inicial_qq">Data Inicial:</label>
+                        <input class="campos_txt" type="text" id="data_inicial_qq" name="ch_anterior" maxlength="10" value="" autocomplete="off">
                     </div > 	
                     <div class="colunas">     
                         <label for="num_dias2">Nº de dias:</label>
-                        <input class="campos_txt" type="text" id="num_dias2" name="num_dias2" value="" autocomplete="off">
+                        <input class="campos_txt" type="number" id="num_dias2" name="num_dias2" value="" autocomplete="off">
                     </div > 
                     <div class="colunas"> 
                         <label for="data_prevista2">Data Prevista:</label>
@@ -146,11 +158,11 @@
                 <form action="#" id="" class="linhas">  
                     <div class="colunas">  
                         <label for="data_inicial2">Data Inicial:</label>
-                        <input class="campos_txt" type="text" id="data_inicial2" name="ch_anterior" value="" autocomplete="off">
+                        <input class="campos_txt" type="text" id="data_inicial2" name="ch_anterior" maxlength="10"  value="" autocomplete="off">
                     </div>  
                     <div class="colunas"> 
                         <label for="data_final">Data Final:</label>
-                        <input class="campos_txt" type="text" id="data_final" name="data_final" value="" autocomplete="off"> 
+                        <input class="campos_txt" type="text" id="data_final" name="data_final" maxlength="10"  value="" autocomplete="off"> 
                     </div >
                     <div class="colunas"> 
                         <label for="num_dias3">Nº de dias:</label>
@@ -158,18 +170,19 @@
                     </div > 
                     
                 </form> 
+                <div  class="linhas"><span id="msg"></span></div>
             </div>
 
             <div id="conteudo_folha1" class="conteudos">        
                 <form action="#">
                     <label for="data_de_lotacao" >Data de Lotação:</label>
-                    <input class="campos_txt"  type="text" id="data_de_lotacao" name="fname" value="" autofocus autocomplete="off">
+                    <input class="campos_txt"  type="text" id="data_de_lotacao" name="fname"  maxlength="10" value="" autofocus autocomplete="off">
                     
                     <label for="ch_anterior">CH Anterior:</label>
-                    <input class="campos_txt" type="text" id="ch_anterior" name="ch_anterior" value="" autocomplete="off">
+                    <input class="campos_txt" type="number" id="ch_anterior" name="ch_anterior" value="" autocomplete="off">
                     
                     <label for="nova_ch" >Nova CH:</label>
-                    <input class="campos_txt" type="text" id="nova_ch" name="nova_ch" value="" autocomplete="off">
+                    <input class="campos_txt" type="number" id="nova_ch" name="nova_ch" value="" autocomplete="off">
                     
                     <label for="ch_prop">CH Proporcional:</label>
                     <input class="campos_txt  resultado" type="text" id="ch_prop" name="ch_prop" value="" readonly autocomplete="off">
@@ -177,6 +190,7 @@
                     <!-- <input type="submit" value="Submit"> -->
                 </form> 
             </div>
+            <div id="conteudo_folha3"  class="conteudos">        </div>
         </div>
     </div>
 <script type="text/javascript" src="popup.js"></script>

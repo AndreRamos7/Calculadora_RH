@@ -3,14 +3,22 @@
 */
 document.getElementById("conteudo_folha2").style.display = "block";
 document.getElementById("conteudo_folha1").style.display = "none";
+document.getElementById("conteudo_folha3").style.display = "none";
 
 document.getElementById("aba1").addEventListener("click", function(){
+	document.getElementById("conteudo_folha3").style.display = "none";
 	document.getElementById("conteudo_folha2").style.display = "none";
 	document.getElementById("conteudo_folha1").style.display = "block";
 });
 document.getElementById("aba2").addEventListener("click", function(){
 	document.getElementById("conteudo_folha1").style.display = "none";
 	document.getElementById("conteudo_folha2").style.display = "block";
+	document.getElementById("conteudo_folha3").style.display = "none";
+});
+document.getElementById("aba3").addEventListener("click", function(){
+	document.getElementById("conteudo_folha1").style.display = "none";
+	document.getElementById("conteudo_folha2").style.display = "none";
+	document.getElementById("conteudo_folha3").style.display = "block";
 });
 /*
   CÓDIGO PARA ABA DE CÁLCULO DE CH PROPORCIONAL
@@ -22,10 +30,12 @@ var elemento_ch_prop = document.getElementById("ch_prop");
 
 elemento_data_de_lotacao.addEventListener("keyup", calcular_ch);
 elemento_ch_anterior.addEventListener("keyup", calcular_ch);
+elemento_ch_anterior.addEventListener("change", calcular_ch);
+
 elemento_ch_nova.addEventListener("keyup", calcular_ch);
+elemento_ch_nova.addEventListener("change", calcular_ch);
 
 elemento_data_de_lotacao.focus();
-
 
 function calcular_ch(event) {	
 	var array_data_ltc = elemento_data_de_lotacao.value.split("/");            
@@ -44,14 +54,13 @@ function calcular_ch(event) {
 	var novo_valor = parseFloat((difer_ch/30)*dias_restantes);
 	var ch_prop = novo_valor + parseInt(elemento_ch_anterior.value);
 	elemento_ch_prop.value = (!isNaN(ch_prop))? Math.round(ch_prop):"";
-	
 }  
 /*
   CÓDIGO PARA ABA DE CÁLCULO DE DATAS
 */
 
 _elemento_data_atual = document.getElementById("data_atual");
-elemento_data_inicial1 = document.getElementById("data_inicial1");
+elemento_data_inicial_qq = document.getElementById("data_inicial_qq");
 elemento_data_inicial2 = document.getElementById("data_inicial2");
 
 elemento_num_dias1 = document.getElementById("num_dias1");
@@ -61,7 +70,13 @@ elemento_data_final = document.getElementById("data_final");
 elemento_data_prevista1 = document.getElementById("data_prevista1");
 elemento_data_prevista2 = document.getElementById("data_prevista2");
 elemento_num_dias3 = document.getElementById("num_dias3");
+elemento_msg = document.getElementById("msg");
 calcular_diferenca_pra_hoje();
+
+function mensagem(msg, color = "red"){
+	elemento_msg.innerText = msg;
+	elemento_msg.style.color = color;
+}
 
 function is_teclado_numerico(keyCode){
 	if(keyCode >= 96 && keyCode <= 105){
@@ -74,43 +89,59 @@ function is_teclado_numerico(keyCode){
 }
 
 function mascarar(valor){
-	var mascarado = valor;
-	if(is_teclado_numerico(mascarado)){
-		if(typeof valor === 'number'){
-			console.log("é número!" + typeof valor);
-		}
-		//console.log("!" + typeof valor);
-		if(valor.length == 2){
-			mascarado = [valor, "/"].join('');
-		}
-		if(valor.length == 5){
-			mascarado = [valor, "/"].join('');
-		}	
+	var mascarado = valor;	
+	if(typeof valor === 'number'){
+		console.log("é número!" + typeof valor);
 	}
+	console.log("!" + typeof valor);
+	console.log(valor.length);
+	if(valor.length == 2){
+		mascarado = [valor, "/"].join('');
+	}
+	if(valor.length == 5){
+		mascarado = [valor, "/"].join('');
+	}		
 	return mascarado;
 }
 
 // ADICIONA EVENTOS AOS CAMPOS DE TEXTO
-elemento_data_inicial1.addEventListener("keyup", (event) => {
-	calcular_data_qq_mais_dias();
-	//this.value = mascarar(event.keyCode);
+elemento_data_inicial_qq.addEventListener("keyup", (event) => {
+	//if(is_teclado_numerico(event.keyCode)){
+		calcular_data_qq_mais_dias(event);
+	/*	mensagem("");
+	}else{
+		mensagem("Digite apenas valores numéricos. A '/' é automática.");
+	}*/
 });
 elemento_num_dias2.addEventListener("keyup", (event) => {	
 	calcular_data_qq_mais_dias();
 });
+elemento_num_dias2.addEventListener("change", (event) => {	
+	calcular_data_qq_mais_dias();
+});
+
 elemento_data_prevista2.addEventListener("keyup", (event) => {
 	calcular_data_qq_mais_dias();
 });
 elemento_data_inicial2.addEventListener("keyup", (event) => {	
 	calcular_duas_datas();
 });
+
 elemento_num_dias3.addEventListener("keyup", (event) => {
 	calcular_duas_datas();
 });
+elemento_num_dias3.addEventListener("change", (event) => {
+	calcular_duas_datas();
+});
+
 elemento_data_final.addEventListener("keyup", (event) => {
 	calcular_duas_datas();
 });
+
 elemento_num_dias1.addEventListener('keyup', (event) => {
+	calcular_diferenca_pra_hoje();
+});
+elemento_num_dias1.addEventListener('change', (event) => {
 	calcular_diferenca_pra_hoje();
 });
 
@@ -134,13 +165,13 @@ function calcular_diferenca_pra_hoje() {
 	elemento_data_prevista1.value = data_prevista1;
 }
 
-function calcular_data_qq_mais_dias() {
-	var valor = mascarar(elemento_data_inicial1.value);
-	//elemento_data_inicial1.value = valor;
-	var array_data_inicial1 = valor.split("/");   
-	var dia = array_data_inicial1[0];
-	var mes = array_data_inicial1[1];
-	var ano = array_data_inicial1[2];
+function calcular_data_qq_mais_dias(event) {
+	var valor = (elemento_data_inicial_qq.value);
+	//elemento_data_inicial_qq.value = valor;
+	var array_data_inicial_qq = valor.split("/");   
+	var dia = array_data_inicial_qq[0];
+	var mes = array_data_inicial_qq[1];
+	var ano = array_data_inicial_qq[2];
 				
 	var num_dias2 = parseInt(elemento_num_dias2.value);
 	var data_ins = new Date( [mes, "/", dia, "/", ano].join('') );            
