@@ -11,7 +11,7 @@
             box-shadow: -5px -6px 2px #dcc0c0;
             border-radius: 9px;
             padding: 20px;
-			width: 350px;
+			width: 380px;
         }
         #abas{
 			background-color: #ffc107;
@@ -69,10 +69,9 @@
             float: none;
         }
         .conteudos{
-            padding: 10px;            
+            padding: 13px;            
             box-shadow: 0px -3px 10px grey;
         }
-
         label{
             display: block;
             font-size: small;
@@ -93,15 +92,14 @@
         }
         .linhas{
             display: flex;
-            margin: 10px;
+            margin: 20px;
         }
         .colunas{
             display: block;
             float: left;
             margin: 0px 0px 0px 10px;
-        }
-            
-         .active, .botao:hover {
+        }            
+        .active, .botao:hover {
 			background-color: #666;
 			text-decoration: none;
 			color: white;
@@ -113,6 +111,47 @@
 		}
         span#msg{
             color: red;
+        }
+
+        table, th, td {
+          border: 1px solid black;
+        }
+
+        /* ========================================== ABA DE LEMBRETES =============== */
+        #conteudo_folha3 .ladoalado{
+            float: left;
+        }
+        #conteudo_folha3 textarea{
+            resize: none;
+        }
+        #conteudo_folha3 div#tabela_div{
+            margin-bottom: 15px;
+        }
+        #conteudo_folha3 table th {
+            position: -webkit-sticky; /* this is for all Safari (Desktop & iOS), not for Chrome*/
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: #fff;
+        }
+        #conteudo_folha3 input[type="text"]{
+            display: block;
+            border: 1px solid black;
+            height: 12px;
+            width: 65px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: small;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+        #conteudo_folha3 input[type="button"]{            
+            height: 25px;
+            width: 65px;            
+            border-radius: 5px;
+            font-size: small;
+            margin-bottom: 10px;
+            margin-left: 10px;
         }
     </style>
 </head>
@@ -190,7 +229,37 @@
                     <!-- <input type="submit" value="Submit"> -->
                 </form> 
             </div>
-            <div id="conteudo_folha3"  class="conteudos">        </div>
+            <div id="conteudo_folha3"  class="conteudos">
+                <div id="">  
+                    <div id="tabela_div" style="overflow-y: auto; height: 100px;">       
+                        <table id="tabela" style="width:100%" >
+                            <tr>
+                                <th>Nº</th>
+                                <th>Descrição</th>
+                                <th>Início</th>
+                                <th>Fim</th>
+                                <th>Ações</th>
+                            </tr>                            
+                        </table>
+                    </div>
+                </div>    
+                <div id="">                
+                    <div id="" class="ladoalado">                
+                        <textarea id="lembrete_campo_descricao" cols="25" rows="7" placeholder="Descrição aqui.."></textarea>
+                    </div>    
+                    <div id="" class="ladoalado">                
+                        <div >
+                            <!--<label for="data_ini" >Início:</label> -->
+                            <input id="lembrete_campo_data_ini" placeholder="inicio" type="text" id="data_ini" name="data_ini"  maxlength="10" value="" autofocus autocomplete="off">
+                            <!-- <label for="data_fim" >Final:</label> -->
+                            <input id="lembrete_campo_data_fim"  placeholder="final" type="text" id="data_fim" name="data_fim"  maxlength="10" value="" autofocus autocomplete="off">
+                            <input id="btn_lembrar" type="button" value="Salvar"/><input id="btn_del" type="button" value="Del"/>
+                        </div>
+                    </div>    
+                      
+                </div>    
+
+            </div>
         </div>
     </div>
 <script type="text/javascript" src="popup.js"></script>

@@ -18,7 +18,9 @@ document.getElementById("aba2").addEventListener("click", function(){
 document.getElementById("aba3").addEventListener("click", function(){
 	document.getElementById("conteudo_folha1").style.display = "none";
 	document.getElementById("conteudo_folha2").style.display = "none";
-	document.getElementById("conteudo_folha3").style.display = "block";
+	document.getElementById("conteudo_folha3").style.display = "block";	
+	listar_na_tabela();
+	
 });
 /*
   CÓDIGO PARA ABA DE CÁLCULO DE CH PROPORCIONAL
@@ -207,4 +209,72 @@ function calcular_duas_datas() {
 	elemento_num_dias3.value = !isNaN(dias)? dias+1: "--";
 
 }
+
+/* ========================================================================= */
+/* ==========================   LEMBRETES    ================================ */
+/* ========================================================================= */
+function listar_na_tabela(){
+	var elemento_tabela = document.getElementById("tabela");
+
+	chrome.storage.sync.get('dados', function(result) {		
+		result.dados.lembretes.forEach(function(item, index, array) {
+			console.log(item, index);
+
+			var linha = document.createElement("tr");
+			var coluna_ordem = document.createElement("td");
+			coluna_ordem.innerText = index;
+			linha.appendChild(coluna_ordem);
+
+			var coluna_descricao = document.createElement("td");
+			coluna_descricao.innerText = item.descricao;
+			linha.appendChild(coluna_descricao);
+
+			var coluna_inicio = document.createElement("td");
+			coluna_inicio.innerText = item.inicio;
+			linha.appendChild(coluna_inicio);
+
+			var coluna_final = document.createElement("td");
+			coluna_final.innerText = item.fim;
+			linha.appendChild(coluna_final);
+
+			var coluna_actions = document.createElement("td");
+			var btn_ver = document.createElement("button");
+			
+			btn_ver.innerText = "Ver";
+			btn_ver.style.backgroundColor = "blue";
+			btn_ver.id = "ver_" + index;
+			btn_ver.addEventListener("click", function(event){
+				console.log("ID do botao: ", event.target.id);
+				
+			});
+			coluna_actions.appendChild(btn_ver);
+			linha.appendChild(coluna_actions);
+
+			elemento_tabela.appendChild(linha);
+
+			console.log('lembrete.descricao:::', item.descricao);
+		});
+	});
+}
+document.getElementById("btn_lembrar").addEventListener("click", function(){
+	
+	chrome.storage.sync.get('dados', function(result) {			
+		if(result !== undefined){
+			var lembrete_campo_descricao = document.getElementById("lembrete_campo_descricao").value;
+			var lembrete_campo_data_ini = document.getElementById("lembrete_campo_data_ini").value;
+			var lembrete_campo_data_fim = document.getElementById("lembrete_campo_data_fim").value;
+			listar_na_tabela();
+			result.dados.lembretes.push({"descricao": lembrete_campo_descricao, "inicio": lembrete_campo_data_ini, "fim": lembrete_campo_data_fim});			
+
+			chrome.storage.sync.set({dados: result.dados}, function() {
+				//console.log('Preenchido. O Valor foi modificado para ' + result.dados);
+			});
+		}else{
+			var value = {lembretes: [{"descricao": "descricao padrao 2", "inicio": "12/12/2020", "fim": "12/05/2021"}]};			
+			chrome.storage.sync.set({dados: value}, function() {
+				//console.log('SEM NADA. O Valor foi Adicionado para ' + value.lembretes[0].descricao);
+			});
+		}
+    });
+});
 
