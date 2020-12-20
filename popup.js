@@ -384,7 +384,7 @@ function notificacoes(qtd, tt){
 	document.getElementById("aba3").innerText = "Lembretes(" + qtd + "/" + tt + ")";
 	var qtd_vencidos = [qtd % 9, "+"].join('') ;	
 	if(parseInt(qtd) >= 1){
-		chrome.browserAction.setBadgeText({texto: qtd_vencidos}, () => { });
+		chrome.browserAction.setBadgeText({text: qtd_vencidos}, () => { });
 	}
 	
 
