@@ -19,8 +19,7 @@ document.getElementById("aba3").addEventListener("click", function(){
 	document.getElementById("conteudo_folha1").style.display = "none";
 	document.getElementById("conteudo_folha2").style.display = "none";
 	document.getElementById("conteudo_folha3").style.display = "block";	
-	listar_na_tabela();
-	
+	atualizar_tabela();
 });
 /*
   CÓDIGO PARA ABA DE CÁLCULO DE CH PROPORCIONAL
@@ -210,17 +209,25 @@ function calcular_duas_datas() {
 
 }
 
-/* ========================================================================= */
-/* ==========================   LEMBRETES    ================================ */
-/* ========================================================================= */
-function listar_na_tabela(){
+/* ================================================================================== */
+/* ==========================   LEMBRETES    ======================================== */
+/* ================================================================================== */
+function atualizar_tabela(){
 	var elemento_tabela = document.getElementById("tabela");
-
+	elemento_tabela.innerHTML = "<tr>" +
+								"<th>Nº</th>" +
+								"	<th>Descrição</th>" +
+								"	<th>Início</th>" +
+								"	<th>Fim</th>" +
+								"	<th>Ações</th>" +
+								"</tr>";
 	chrome.storage.sync.get('dados', function(result) {		
+		var cores = ["#bfbfbf", "white"];
 		result.dados.lembretes.forEach(function(item, index, array) {
 			console.log(item, index);
 
 			var linha = document.createElement("tr");
+			linha.style.backgroundColor = cores[index % 2];
 			var coluna_ordem = document.createElement("td");
 			coluna_ordem.innerText = index;
 			linha.appendChild(coluna_ordem);
@@ -238,14 +245,14 @@ function listar_na_tabela(){
 			linha.appendChild(coluna_final);
 
 			var coluna_actions = document.createElement("td");
-			var btn_ver = document.createElement("button");
-			
+			var btn_ver = document.createElement("button");			
 			btn_ver.innerText = "Ver";
-			btn_ver.style.backgroundColor = "blue";
+			btn_ver.style.backgroundColor = "#8e8ecc";
 			btn_ver.id = "ver_" + index;
 			btn_ver.addEventListener("click", function(event){
 				console.log("ID do botao: ", event.target.id);
-				
+				document.getElementById("id_4_del").value = index;
+				mostrar_dados_por_id(index);				
 			});
 			coluna_actions.appendChild(btn_ver);
 			linha.appendChild(coluna_actions);
@@ -256,25 +263,83 @@ function listar_na_tabela(){
 		});
 	});
 }
-document.getElementById("btn_lembrar").addEventListener("click", function(){
-	
+document.getElementById("btn_lembrar").addEventListener("click", function(){	
 	chrome.storage.sync.get('dados', function(result) {			
 		if(result !== undefined){
 			var lembrete_campo_descricao = document.getElementById("lembrete_campo_descricao").value;
 			var lembrete_campo_data_ini = document.getElementById("lembrete_campo_data_ini").value;
 			var lembrete_campo_data_fim = document.getElementById("lembrete_campo_data_fim").value;
-			listar_na_tabela();
+			
 			result.dados.lembretes.push({"descricao": lembrete_campo_descricao, "inicio": lembrete_campo_data_ini, "fim": lembrete_campo_data_fim});			
-
-			chrome.storage.sync.set({dados: result.dados}, function() {
-				//console.log('Preenchido. O Valor foi modificado para ' + result.dados);
-			});
+			chrome.storage.sync.set({dados: result.dados}, function() {});
+			atualizar_tabela();
 		}else{
 			var value = {lembretes: [{"descricao": "descricao padrao 2", "inicio": "12/12/2020", "fim": "12/05/2021"}]};			
-			chrome.storage.sync.set({dados: value}, function() {
-				//console.log('SEM NADA. O Valor foi Adicionado para ' + value.lembretes[0].descricao);
-			});
+			chrome.storage.sync.set({dados: value}, function() {});
 		}
     });
 });
 
+document.getElementById("btn_del").addEventListener("click", function(){
+	var id_4_del = document.getElementById("id_4_del").value;
+
+	var confirmado = confirm("Será excluido. ok?");
+	if(confirmado){
+		chrome.storage.sync.get('dados', function(result) {			
+			if(result !== undefined){
+				result.dados.lembretes.splice(id_4_del, 1);
+				chrome.storage.sync.set({dados: result.dados}, function() {});
+				atualizar_tabela();
+				limpar_campos_lembretes();
+			}else{
+				alert("sem dados");
+			}		
+		});
+		
+	}else{
+		//mensagem();
+	}
+});
+
+function mostrar_dados_por_id(id){
+	var lembrete_campo_descricao = document.getElementById("lembrete_campo_descricao");
+	var lembrete_campo_data_ini = document.getElementById("lembrete_campo_data_ini");
+	var lembrete_campo_data_fim = document.getElementById("lembrete_campo_data_fim");
+
+	chrome.storage.sync.get('dados', function(result) {			
+		if(result !== undefined){
+			lembrete_campo_descricao.value = result.dados.lembretes[id].descricao;
+			lembrete_campo_data_ini.value = result.dados.lembretes[id].inicio;
+			lembrete_campo_data_fim.value = result.dados.lembretes[id].fim;
+		}	
+	});	
+}
+
+function limpar_campos_lembretes(){
+	var lembrete_campo_descricao = document.getElementById("lembrete_campo_descricao");
+	var lembrete_campo_data_ini = document.getElementById("lembrete_campo_data_ini");
+	var lembrete_campo_data_fim = document.getElementById("lembrete_campo_data_fim");
+	var id_4_del = document.getElementById("id_4_del");
+
+	lembrete_campo_descricao.value = "";
+	lembrete_campo_data_ini.value =  "";
+	lembrete_campo_data_fim.value =  "";
+	id_4_del = undefined;
+
+}
+
+chrome.storage.sync.get('dados', function(result) {			
+	if(result !== undefined){
+		notificacoes(result.dados.lembretes.filter(isBigEnough).length); 
+	}
+  });
+  
+function isBigEnough(value) {
+	return value.fim == "18/12/2020";
+}
+
+function notificacoes(qtd){
+	document.getElementById("aba3").innerText = "Lembretes(" + qtd + ")";
+
+}
+  

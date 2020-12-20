@@ -2,8 +2,9 @@
 'use strict';
 
 chrome.runtime.onInstalled.addListener(function() { 
-    console.log("iniciado/instalado");
+  console.log("iniciado/instalado");
 });
+
 
 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
