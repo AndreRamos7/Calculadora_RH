@@ -15,7 +15,14 @@
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="logotipo.svg">
   <defs
-     id="defs2" />
+     id="defs2">
+    <rect
+       x="59.080433"
+       y="239.29132"
+       width="49.412596"
+       height="31.033391"
+       id="rect91" />
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -23,9 +30,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="33.158731"
-     inkscape:cy="393.8689"
+     inkscape:zoom="0.7"
+     inkscape:cx="372.51602"
+     inkscape:cy="913.1546"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -43,7 +50,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -165,5 +172,141 @@
            y="111.79996" />
       </g>
     </g>
+    <g
+       id="g73-0"
+       transform="matrix(1.0000015,0,0,1.1156317,0.65250763,130.15845)"
+       inkscape:export-xdpi="29.090809"
+       inkscape:export-ydpi="29.090809"
+       inkscape:export-filename="C:\Users\andre\Documents\Dev\minhas extensões chrome\calculadora\Icons\icon_9notif_128x.png">
+      <g
+         id="g55-7">
+        <rect
+           style="fill:#000080;fill-rule:evenodd;stroke-width:0.298911"
+           id="rect38-5"
+           width="99.921852"
+           height="93.089584"
+           x="6.0476217"
+           y="44.147617" />
+        <rect
+           style="fill:#008000;fill-rule:evenodd;stroke-width:0.264583"
+           id="rect10-3"
+           width="88.446426"
+           height="82.398804"
+           x="11.339286"
+           y="48.380955" />
+        <rect
+           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0920388"
+           id="rect12-4"
+           width="68.623978"
+           height="12.851185"
+           x="21.317854"
+           y="60.627384" />
+        <rect
+           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
+           id="rect14-7"
+           width="12.851188"
+           height="12.851185"
+           x="21.544645"
+           y="80.130959" />
+        <rect
+           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
+           id="rect16-2"
+           width="12.851188"
+           height="12.851185"
+           x="39.687496"
+           y="80.055367" />
+        <rect
+           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
+           id="rect18-8"
+           width="12.851188"
+           height="12.851185"
+           x="58.427837"
+           y="80.12558" />
+        <rect
+           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
+           id="rect20-3"
+           width="12.851188"
+           height="12.851185"
+           x="76.570694"
+           y="80.049988" />
+        <rect
+           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
+           id="rect22-2"
+           width="12.851188"
+           height="12.851185"
+           x="21.544645"
+           y="96.005951" />
+        <rect
+           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
+           id="rect24-8"
+           width="12.851188"
+           height="12.851185"
+           x="39.687496"
+           y="95.930359" />
+        <rect
+           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
+           id="rect26-2"
+           width="12.851188"
+           height="12.851185"
+           x="58.427837"
+           y="96.000572" />
+        <rect
+           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
+           id="rect28-7"
+           width="12.851188"
+           height="12.851185"
+           x="76.570694"
+           y="95.92498" />
+        <rect
+           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
+           id="rect30-9"
+           width="12.851188"
+           height="12.851185"
+           x="21.544645"
+           y="111.88096" />
+        <rect
+           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
+           id="rect32-9"
+           width="12.851188"
+           height="12.851185"
+           x="39.687496"
+           y="111.80536" />
+        <rect
+           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
+           id="rect34-1"
+           width="12.851188"
+           height="12.851185"
+           x="58.427837"
+           y="111.87556" />
+        <rect
+           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
+           id="rect36-0"
+           width="12.851188"
+           height="12.851185"
+           x="76.570694"
+           y="111.79996" />
+      </g>
+    </g>
+    <ellipse
+       style="fill:#000080;stroke-width:0.301252"
+       id="path87"
+       cx="85.927162"
+       cy="264.25546"
+       rx="31.003265"
+       ry="26.66745"
+       inkscape:export-filename="C:\Users\andre\Documents\Dev\minhas extensões chrome\calculadora\Icons\icon_9notif_128x.png"
+       inkscape:export-xdpi="29.090809"
+       inkscape:export-ydpi="29.090809" />
+    <text
+       xml:space="preserve"
+       id="text89"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect91);fill:#e6e6e6;fill-opacity:1;stroke:none;"
+       transform="matrix(3.4280407,0,0,3.5629262,-140.99126,-609.30457)"
+       inkscape:export-filename="C:\Users\andre\Documents\Dev\minhas extensões chrome\calculadora\Icons\icon_9notif_128x.png"
+       inkscape:export-xdpi="29.090809"
+       inkscape:export-ydpi="29.090809"><tspan
+         x="59.080078"
+         y="248.94648"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.5833px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffff00">9+ </tspan></tspan></text>
   </g>
 </svg>
