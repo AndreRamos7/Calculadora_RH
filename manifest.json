@@ -1,6 +1,6 @@
 {
   "name": "Calculadora de datas",
-  "version": "1.7",
+  "version": "1.8",
   "description": "Cálculos básicos de datas",
   "permissions": ["storage"],  
   "background": {

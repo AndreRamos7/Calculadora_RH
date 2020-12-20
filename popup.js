@@ -1,6 +1,7 @@
 /*
  ========================================= CÓDIGO PARA ALTERAR ABAS COM CLIQUE
 */
+get_notifications();
 document.getElementById("conteudo_folha2").style.display = "block";
 document.getElementById("conteudo_folha1").style.display = "none";
 document.getElementById("conteudo_folha3").style.display = "none";
@@ -20,22 +21,16 @@ document.getElementById("aba3").addEventListener("click", function(){
 	document.getElementById("conteudo_folha2").style.display = "none";
 	document.getElementById("conteudo_folha3").style.display = "block";	
 	atualizar_tabela();
-	
+	get_notifications();	
 });
 /*
  ===================================== SCRIPTS EXTERNOS
  */
-const LIMITE_DADOS = parseInt(5);
+const LIMITE_DADOS = parseInt(99);
 var passhash = CryptoJS.MD5("password").toString();
 console.log(passhash);
 // Called when the user clicks on the browser action.
-chrome.browserAction.onClicked.addListener(function(tab) {
-	// No tabs or host permissions needed!
-	console.log('Turning ' + tab.url + ' red!');
-	chrome.tabs.executeScript({
-	  code: 'document.body.style.backgroundColor="red"'
-	});
-  });
+
 
 /*
  ===================================== CÓDIGO PARA ABA DE CÁLCULO DE CH PROPORCIONAL
@@ -239,49 +234,51 @@ function atualizar_tabela(){
 								"</tr>";
 	chrome.storage.sync.get('dados', function(result) {		
 		var cores = ["#bfbfbf", "white"];
-		result.dados.lembretes.forEach(function(item, index, array) {
-			console.log(item, index);
+		if(result.dados !== undefined){
+			result.dados.lembretes.forEach(function(item, index, array) {
+				console.log(item, index);
 
-			var linha = document.createElement("tr");
-			linha.className = "unselected";
-			linha.style.backgroundColor = cores[index % 2];
-			var coluna_ordem = document.createElement("td");
-			coluna_ordem.innerText = index;
-			linha.appendChild(coluna_ordem);
+				var linha = document.createElement("tr");
+				linha.className = "unselected";
+				linha.style.backgroundColor = cores[index % 2];
+				var coluna_ordem = document.createElement("td");
+				coluna_ordem.innerText = index;
+				linha.appendChild(coluna_ordem);
 
-			var coluna_descricao = document.createElement("td");
-			coluna_descricao.innerText = item.descricao.substr(Math.ceil(item.descricao.length * 0.4)) + "...";
-			coluna_descricao.title = item.descricao;
-			linha.appendChild(coluna_descricao);
+				var coluna_descricao = document.createElement("td");
+				coluna_descricao.innerText = item.descricao.substr(Math.ceil(item.descricao.length * 0.4)) + "...";
+				coluna_descricao.title = item.descricao;
+				linha.appendChild(coluna_descricao);
 
-			var coluna_inicio = document.createElement("td");
-			coluna_inicio.innerText = item.inicio;
-			linha.appendChild(coluna_inicio);
+				var coluna_inicio = document.createElement("td");
+				coluna_inicio.innerText = item.inicio;
+				linha.appendChild(coluna_inicio);
 
-			var coluna_final = document.createElement("td");
-			coluna_final.innerText = item.fim;
-			linha.appendChild(coluna_final);
+				var coluna_final = document.createElement("td");
+				coluna_final.innerText = item.fim;
+				linha.appendChild(coluna_final);
 
-			var coluna_actions = document.createElement("td");
-			var btn_ver = document.createElement("input");			
-			btn_ver.type = "checkbox";			
-			btn_ver.style.cursor = "pointer";
-			btn_ver.id = "ver_" + index;
-			
-			coluna_actions.appendChild(btn_ver);
-			linha.appendChild(coluna_actions);
-			
-			linha.style.cursor = "pointer";
-			linha.addEventListener("click", function(event){
-				console.log("ID do botao: ", event.target.id);
-				document.getElementById("id_4_del").value = index;
-				document.getElementById("id_4_save").value = index;
-				mostrar_dados_por_id(index);				
+				var coluna_actions = document.createElement("td");
+				var btn_ver = document.createElement("input");			
+				btn_ver.type = "checkbox";			
+				btn_ver.style.cursor = "pointer";
+				btn_ver.id = "ver_" + index;
+				
+				coluna_actions.appendChild(btn_ver);
+				linha.appendChild(coluna_actions);
+				
+				linha.style.cursor = "pointer";
+				linha.addEventListener("click", function(event){
+					console.log("ID do botao: ", event.target.id);
+					document.getElementById("id_4_del").value = index;
+					document.getElementById("id_4_save").value = index;
+					mostrar_dados_por_id(index);				
+				});
+				elemento_tabela.appendChild(linha);
+
+				console.log('lembrete.descricao:::', item.descricao);
 			});
-			elemento_tabela.appendChild(linha);
-
-			console.log('lembrete.descricao:::', item.descricao);
-		});
+		}
 	});
 }
 
@@ -291,25 +288,28 @@ document.getElementById("btn_novo").addEventListener("click", function(){
 });
 
 document.getElementById("btn_lembrar").addEventListener("click", function(){	
+	atualizar_tabela();
 	var id_4_save = document.getElementById("id_4_save").value;
 	console.log("id_4_save: ", id_4_save);
 	chrome.storage.sync.get('dados', function(result) {			
-		if(result !== undefined && result.dados.lembretes.length <= LIMITE_DADOS){
-			var lembrete_campo_descricao = document.getElementById("lembrete_campo_descricao").value;
-			var lembrete_campo_data_ini = document.getElementById("lembrete_campo_data_ini").value;
-			var lembrete_campo_data_fim = document.getElementById("lembrete_campo_data_fim").value;
-			
-			if(id_4_save !== "undefined"){
-				result.dados.lembretes.splice(id_4_save, 1, {"descricao": lembrete_campo_descricao, "inicio": lembrete_campo_data_ini, "fim": lembrete_campo_data_fim});			
-				chrome.storage.sync.set({dados: result.dados}, function() {});
-			}else{
-				result.dados.lembretes.push({"descricao": lembrete_campo_descricao, "inicio": lembrete_campo_data_ini, "fim": lembrete_campo_data_fim});			
-				chrome.storage.sync.set({dados: result.dados}, function() {});
+		if(result.dados != undefined){
+			if(result.dados.lembretes.length <= LIMITE_DADOS){
+				var lembrete_campo_descricao = document.getElementById("lembrete_campo_descricao").value;
+				var lembrete_campo_data_ini = document.getElementById("lembrete_campo_data_ini").value;
+				var lembrete_campo_data_fim = document.getElementById("lembrete_campo_data_fim").value;
+				
+				if(id_4_save != "undefined"){
+					result.dados.lembretes.splice(id_4_save, 1, {"descricao": lembrete_campo_descricao, "inicio": lembrete_campo_data_ini, "fim": lembrete_campo_data_fim});			
+					chrome.storage.sync.set({dados: result.dados}, function() {});
+				}else{
+					result.dados.lembretes.push({"descricao": lembrete_campo_descricao, "inicio": lembrete_campo_data_ini, "fim": lembrete_campo_data_fim});			
+					chrome.storage.sync.set({dados: result.dados}, function() {});
+				}
+				atualizar_tabela();
+			}else if(result.dados.lembretes.length >= LIMITE_DADOS){
+				alert("A quantidade de lembretes excedeu o limite de " + LIMITE_DADOS + ". Exclua alguns deles");
 			}
-			atualizar_tabela();
-		}else if(result.dados.lembretes.length >= LIMITE_DADOS){
-			alert("A quantidade de lembretes excedeu o limite de " + LIMITE_DADOS + ". Exclua alguns deles");
-		}else if(result === undefined){
+		}else if(result.dados == undefined){
 			var value = {lembretes: [{"descricao": "descricao padrao 2", "inicio": "12/12/2020", "fim": "12/05/2021"}]};			
 			chrome.storage.sync.set({dados: value}, function() {});
 		}
@@ -319,7 +319,7 @@ document.getElementById("btn_lembrar").addEventListener("click", function(){
 document.getElementById("btn_del").addEventListener("click", function(){
 	var id_4_del = document.getElementById("id_4_del").value;
 
-	var confirmado = confirm("Será excluido. ok?");
+	var confirmado = confirm("Item " + id_4_del + " será excluido! ok?");
 	if(confirmado){
 		chrome.storage.sync.get('dados', function(result) {			
 			if(result !== undefined){
@@ -361,14 +361,14 @@ function limpar_campos_lembretes(){
 	lembrete_campo_data_ini.value =  "";
 	lembrete_campo_data_fim.value =  "";
 	id_4_del = undefined;
-
 }
-
-chrome.storage.sync.get('dados', function(result) {			
-	if(result !== undefined){
-		notificacoes(result.dados.lembretes.filter(isToday).length, result.dados.lembretes.length); 
-	}
-});
+function get_notifications() {
+	chrome.storage.sync.get('dados', function(result) {			
+		if(result.dados != undefined){
+			notificacoes(result.dados.lembretes.filter(isToday).length, result.dados.lembretes.length); 
+		}
+	});
+}
   
 function isToday(value) {
 	var data_atual = new Date();
@@ -382,7 +382,7 @@ function isToday(value) {
 
 function notificacoes(qtd, tt){
 	document.getElementById("aba3").innerText = "Lembretes(" + qtd + "/" + tt + ")";
-	var qtd_vencidos = [qtd % 9, "+"].join('') ;	
+	var qtd_vencidos = [qtd % 9, ""].join('') ;	
 	if(parseInt(qtd) >= 1){
 		chrome.browserAction.setBadgeText({text: qtd_vencidos}, () => { });
 	}
