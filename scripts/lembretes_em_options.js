@@ -3,8 +3,9 @@
 /* ==========================   LEMBRETES    ======================================== */
 /* ================================================================================== */
 const LIMITE_DADOS = parseInt(199);
-
 atualizar_tabela();
+var id_4_del = document.getElementById("id_4_del").value;
+
 function atualizar_tabela(){
     get_notifications();	
 	chrome.storage.sync.get('dados', function(result) {	
@@ -69,9 +70,8 @@ function atualizar_tabela_com_filtros(dados, lixeira=false){
 		linha.style.cursor = "pointer";
 		linha.addEventListener("click", function(event){
 			console.log("ID do botao: ", event.target.id);
-			document.getElementById("id_4_del").value = index;
-			document.getElementById("id_4_save").value = index;
-			mostrar_dados_por_id(index);				
+			document.getElementById("id_4_del").value = item.id;
+			mostrar_dados_por_id(item.id);				
 		});
 		elemento_tabela.appendChild(linha);
 
@@ -133,21 +133,22 @@ document.getElementById("btn_novo").addEventListener("click", function(){
 
 document.getElementById("btn_lembrar").addEventListener("click", function(){	
 	atualizar_tabela();
-	var id_4_save = document.getElementById("id_4_save").value;
-	console.log("id_4_save: ", id_4_save);
+	//var id_4_del = document.getElementById("id_4_del").value;
+	console.log("id_4_del: ", id_4_del);
 	chrome.storage.sync.get('dados', function(result) {			
 		//console.log("result.dados:: ", result.dados);
 		if(result.dados != undefined){
+			var idx_do_id = result.dados.lembretes.findIndex(tem_esse_Id);
 			if(result.dados.lembretes.length <= LIMITE_DADOS){
 				var lembrete_campo_descricao = document.getElementById("lembrete_campo_descricao").value;
 				var lembrete_campo_data_ini = document.getElementById("lembrete_campo_data_ini").value;
 				var lembrete_campo_data_fim = document.getElementById("lembrete_campo_data_fim").value;
 				
-				if(id_4_save != "undefined"){
-					result.dados.lembretes.splice(id_4_save, 1, {"descricao": lembrete_campo_descricao, "inicio": lembrete_campo_data_ini, "fim": lembrete_campo_data_fim});			
+				if(idx_do_id != -1){
+					result.dados.lembretes.splice(idx_do_id, 1, {"id": id_4_del, "descricao": lembrete_campo_descricao, "inicio": lembrete_campo_data_ini, "fim": lembrete_campo_data_fim});			
 					chrome.storage.sync.set({dados: result.dados}, function() {});
 				}else{
-					result.dados.lembretes.push({"descricao": lembrete_campo_descricao, "inicio": lembrete_campo_data_ini, "fim": lembrete_campo_data_fim});			
+					result.dados.lembretes.push({"id": getTIMESTAMP(), "descricao": lembrete_campo_descricao, "inicio": lembrete_campo_data_ini, "fim": lembrete_campo_data_fim});			
 					chrome.storage.sync.set({dados: result.dados}, function() {});
 				}
 				atualizar_tabela();
@@ -159,7 +160,7 @@ document.getElementById("btn_lembrar").addEventListener("click", function(){
 			var lembrete_campo_data_ini = document.getElementById("lembrete_campo_data_ini").value;
 			var lembrete_campo_data_fim = document.getElementById("lembrete_campo_data_fim").value;
 			result = {dados: {"lembretes": []}};
-			result.dados.lembretes.push({"descricao": lembrete_campo_descricao, "inicio": lembrete_campo_data_ini, "fim": lembrete_campo_data_fim});			
+			result.dados.lembretes.push({"id": getTIMESTAMP(), "descricao": lembrete_campo_descricao, "inicio": lembrete_campo_data_ini, "fim": lembrete_campo_data_fim});			
 			chrome.storage.sync.set({dados: result.dados}, function() {
 				atualizar_tabela();
 			});
@@ -169,13 +170,14 @@ document.getElementById("btn_lembrar").addEventListener("click", function(){
 
 
 document.getElementById("btn_del").addEventListener("click", function(){
-	var id_4_del = document.getElementById("id_4_del").value;
+	id_4_del = document.getElementById("id_4_del").value;
     if(id_4_del != "undefined"){
         var confirmado = confirm("Item " + id_4_del + " será excluido! ok?");
         if(confirmado){
             chrome.storage.sync.get('dados', function(result) {			
-                if(result !== undefined){
-                    result.dados.lembretes.splice(id_4_del, 1);
+                if(result != undefined){
+					var idx_do_id = result.dados.lembretes.findIndex(tem_esse_Id);
+                    result.dados.lembretes.splice(idx_do_id, 1);
                     chrome.storage.sync.set({dados: result.dados}, function() {});
                     atualizar_tabela();
                     limpar_campos_lembretes();
@@ -192,17 +194,31 @@ document.getElementById("btn_del").addEventListener("click", function(){
     }
 });
 
+
+function tem_esse_Id(element, index, array) {
+	var id_4_del = document.getElementById("id_4_del").value;
+	if(element.id == id_4_del){
+		return true;
+	}
+	return false;	
+  }
+
+
 function mostrar_dados_por_id(id){
 	var lembrete_campo_descricao = document.getElementById("lembrete_campo_descricao");
 	var lembrete_campo_data_ini = document.getElementById("lembrete_campo_data_ini");
 	var lembrete_campo_data_fim = document.getElementById("lembrete_campo_data_fim");
 
-	chrome.storage.sync.get('dados', function(result) {			
-		if(result != undefined){
-			lembrete_campo_descricao.value = result.dados.lembretes[id].descricao;
-			lembrete_campo_data_ini.value = result.dados.lembretes[id].inicio;
-			lembrete_campo_data_fim.value = result.dados.lembretes[id].fim;
-		}	
+	chrome.storage.sync.get('dados', function(result) {		
+		var dadoComID = result.dados.lembretes.findIndex(tem_esse_Id);	
+		if(result != undefined && dadoComID != -1){			
+			console.log(dadoComID);
+			lembrete_campo_descricao.value = result.dados.lembretes[dadoComID].descricao;
+			lembrete_campo_data_ini.value = result.dados.lembretes[dadoComID].inicio;
+			lembrete_campo_data_fim.value = result.dados.lembretes[dadoComID].fim;
+		}else{			
+			alert("Dados não encontrado!");
+		}
 	});	
 }
 

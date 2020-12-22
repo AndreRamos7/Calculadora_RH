@@ -33,9 +33,6 @@ document.getElementById("aba3").addEventListener("click", function(){
  */
 const LIMITE_DADOS = parseInt(199);
 
-var passhash = CryptoJS.MD5("password").toString();
-console.log(passhash);
-
 /*
  ===================================== CÓDIGO PARA ABA DE CÁLCULO DE CH PROPORCIONAL
  */

@@ -1,6 +1,6 @@
 {
   "name": "Calculadora de datas",
-  "version": "1.8.2",
+  "version": "2",
   "description": "Cálculos básicos de datas e outras utilidades.",
   "permissions": ["storage"],  
   "options_page": "options.html",
