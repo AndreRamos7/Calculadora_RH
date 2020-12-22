@@ -1,6 +1,7 @@
 /*
  ========================================= CÓDIGO PARA ALTERAR ABAS COM CLIQUE
 */
+//iniciar_dados_vazios();
 get_notifications();
 document.getElementById("conteudo_folha2").style.display = "block";
 document.getElementById("conteudo_folha1").style.display = "none";
@@ -30,11 +31,10 @@ document.getElementById("aba3").addEventListener("click", function(){
 /*
  ===================================== SCRIPTS EXTERNOS
  */
-const LIMITE_DADOS = parseInt(99);
+const LIMITE_DADOS = parseInt(199);
+
 var passhash = CryptoJS.MD5("password").toString();
 console.log(passhash);
-// Called when the user clicks on the browser action.
-
 
 /*
  ===================================== CÓDIGO PARA ABA DE CÁLCULO DE CH PROPORCIONAL

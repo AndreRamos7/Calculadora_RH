@@ -2,6 +2,8 @@
 /* ================================================================================== */
 /* ==========================   LEMBRETES    ======================================== */
 /* ================================================================================== */
+const LIMITE_DADOS = parseInt(199);
+
 atualizar_tabela();
 function atualizar_tabela(){
     get_notifications();	
@@ -12,7 +14,7 @@ function atualizar_tabela(){
 	});
 }
 
-function atualizar_tabela_com_filtros(dados){
+function atualizar_tabela_com_filtros(dados, lixeira=false){
 	var elemento_tabela = document.getElementById("tabela");
 	if(dados == undefined){
 		return;
@@ -22,7 +24,7 @@ function atualizar_tabela_com_filtros(dados){
 								"	<th>Descrição</th>" +
 								"	<th>Início</th>" +
 								"	<th>Fim</th>" +
-								"	<th>Ver</th>" +
+								"	<th><input class='checkbox' type='checkbox' id='marcar_tudo'></th>" +
 								"</tr>";
 	var cores = ["#bfbfbf", "white"];
 	
@@ -34,30 +36,34 @@ function atualizar_tabela_com_filtros(dados){
 		linha.style.backgroundColor = cores[index % 2];
 		var coluna_ordem = document.createElement("td");
 		coluna_ordem.innerText = index;
+		coluna_ordem.style.width = "30px";
 		linha.appendChild(coluna_ordem);
 
 		var coluna_descricao = document.createElement("td");
 		coluna_descricao.innerText = item.descricao.substr(0, 30 + Math.ceil(item.descricao.length * 0.4)) + "...";
 		coluna_descricao.title = item.descricao;
+		coluna_descricao.style.width = "300px";
 		linha.appendChild(coluna_descricao);
 
 		var coluna_inicio = document.createElement("td");
 		coluna_inicio.innerText = item.inicio;
+		coluna_inicio.style.width = "100px";
 		linha.appendChild(coluna_inicio);
 
 		var coluna_final = document.createElement("td");
 		coluna_final.innerText = item.fim;
+		coluna_final.style.width = "100px";
 		linha.appendChild(coluna_final);
 
 		var coluna_actions = document.createElement("td");
-		var btn_ver = document.createElement("img");			
-        btn_ver.src = "Icons/pen.png";	
+		var btn_ver = document.createElement("input");			
+		btn_ver.className = "checkbox";	
+		btn_ver.type = "checkbox";	
         btn_ver.width = "20";
-        btn_ver.height = "20";
-		btn_ver.style.cursor = "pointer";
+        btn_ver.height = "20";		
 		btn_ver.id = "ver_" + index;
-		
 		coluna_actions.appendChild(btn_ver);
+		coluna_actions.style.width = "30px";
 		linha.appendChild(coluna_actions);
 		
 		linha.style.cursor = "pointer";
@@ -79,7 +85,7 @@ function filtrar(event){
 	chrome.storage.sync.get('dados', function(result) {	
 		console.log(result.dados.lembretes.filter(isToday));
 		if(result.dados != "undefined"){
-			if(filter === "hoje"){
+			if(filter == "hoje"){
 				atualizar_tabela_com_filtros(result.dados.lembretes.filter(isToday));
 			}else{
 				atualizar_tabela_com_filtros(result.dados.lembretes);
@@ -97,7 +103,25 @@ function filtrar_texto(event){
 		}
 	});
 }
+function marcar_tudo(event){
+	console.log("marcar_tudo: ", event.target.checked);
+	var checkBoxes = document.getElementsByClassName("checkbox");
+	console.log("checkBoxes: ", checkBoxes);
+	if(event.target.checked){
+		for (var i = 0; i < checkBoxes.length; i++) {
+			console.log("checkBoxes: item: ", checkBoxes.item(i).value);
+			checkBoxes.item(i).checked = true;
+		};
+	}else{
+		for (var i = 0; i < checkBoxes.length; i++) {
+			console.log("checkBoxes: item: ", checkBoxes.item(i).value);
+			checkBoxes.item(i).checked = false;
+		};
+	}
+		
+}
 
+document.getElementById("check_marcar_tudo").addEventListener("change", marcar_tudo);
 document.getElementById("periodo_hoje").addEventListener("click", filtrar);
 document.getElementById("periodo_todos").addEventListener("click", filtrar);
 document.getElementById("pesquisar").addEventListener("keyup", filtrar_texto);
@@ -182,6 +206,8 @@ function mostrar_dados_por_id(id){
 	});	
 }
 
+
+
 function limpar_campos_lembretes(){
 	var lembrete_campo_descricao = document.getElementById("lembrete_campo_descricao");
 	var lembrete_campo_data_ini = document.getElementById("lembrete_campo_data_ini");
@@ -242,7 +268,7 @@ function iniciar_dados_vazios(){
 exibe notificações no ícone
 */
 function notificacoes(qtd, tt){
-	document.getElementById("aba3").innerText = "Lembretes(" + qtd + "/" + tt + ")";
+	document.getElementById("notify").innerText = "Lembretes(" + qtd + "/" + tt + ") | LIMITE DE DADOS = " + LIMITE_DADOS;
 	var qtd_vencidos = [qtd, ""].join('') ;	
 	if(parseInt(qtd) >= 1){
 		chrome.browserAction.setBadgeText({text: qtd_vencidos}, () => { });

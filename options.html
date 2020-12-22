@@ -1,21 +1,141 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
     <style>
+      body{
+        background-color: khaki;
+      }
       button {
         height: 30px;
         width: 30px;
         outline: none;
         margin: 10px;
       }
+       /* ========================================== Páginas options do app =============== */
+       #conteudo_options .ladoalado{
+            float: left;
+        }
+        #conteudo_options div#filtros{                                            
+            display: block;
+            /*border: 1px solid rgb(161, 138, 138);*/
+            padding: 2px 0px 2px 2px;
+            height: 20px;
+            width: auto;
+        }
+        #conteudo_options textarea{
+            resize: none;
+        }
+        #conteudo_options div#tabela_div{
+            width: 500px;
+            height: 350px;
+            margin-bottom: 15px;
+        }
+        #conteudo_options table th {
+            position: -webkit-sticky; /* this is for all Safari (Desktop & iOS), not for Chrome*/
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: #fff;
+        }
+        #conteudo_options input[type="text"]{
+            display: block;
+            border: 1px solid black;
+            height: 8px;
+            width: 65px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: small;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+        #conteudo_options input[type="text"]#pesquisar{
+            display: block;
+            border: 1px solid black;
+            height: 15px;
+            width: 100px;
+            padding: 0px;
+            border-radius: 0px;
+            font-size: x-small;    
+            padding: 0px 0px 2px 3px;        
+        }
+        #conteudo_options input[type="button"]{            
+            height: 25px;
+            width: 60px;            
+            border-radius: 5px;
+            font-size: small;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+        #conteudo_options img#btn_novo, img#btn_lembrar, img#btn_del{                                            
+            margin-bottom: 8px;
+            margin-left: 8px;
+        }
+        #conteudo_options .unselected{                                            
+            background-color: white;
+        }
+        #conteudo_options .selected{                                            
+            background-color: royalblue;
+        }
+        #conteudo_options .maozinha{
+            cursor: pointer;
+        }
     </style>
   </head>
   <body>
-    <div id="buttonDiv">
-    </div>
-    <div>
-      <p>Choose a different background color!</p>
+    <div id="buttonDiv"></div>
+
+    <div id="conteudo_options"  class="">
+      <div id=""> <h2> Opções </h2> </div>    
+      <div id=""> <h3 id="notify">notify</h3></div>
+      
+        <div id="filtros">                    
+            <form action="#" name="form_filter"> 
+                <!-- <div class="ladoalado">Filtros </div> -->
+                <label for="periodo_hoje" class="ladoalado maozinha">Hoje:</label> 
+                <input id="periodo_hoje" name="periodo" type="radio" value="hoje" class="ladoalado maozinha"/> 
+                <label for="periodo_todos"  class="ladoalado maozinha"> / Todos:</label> 
+                <input id="periodo_todos" name="periodo" type="radio" value="todos" checked="checked" class="ladoalado maozinha"/> 
+                <input id="pesquisar" name="search" type="text" value="" class="" placeholder="dd/mm/aaaa" autocomplete="off"/> 
+            </form>
+        </div>
+            
+        <div id="">  
+            <div id="tabela_div" style="overflow-y: auto;">       
+                <table id="tabela" style="width:100%" >
+                    <tr>
+                        <th>Nº</th>
+                        <th>Descrição</th>
+                        <th>Início</th>
+                        <th>Fim</th>
+                        <th><input type='checkbox' checked="checked" id="check_marcar_tudo"></th>
+                    </tr>                            
+                </table>
+            </div>
+        </div>    
+        <div id="">                
+            <div id="" class="ladoalado">                
+                <textarea id="lembrete_campo_descricao" cols="50" rows="6" placeholder="Descrição aqui.."></textarea>
+            </div>    
+            <div id="" class="ladoalado">                
+                <div >
+                    <!--<label for="data_ini" >Início:</label> -->
+                    <input id="lembrete_campo_data_ini" placeholder="inicio" type="text" id="data_ini" name="data_ini"  maxlength="10" value="" autofocus autocomplete="off">
+                    <!-- <label for="data_fim" >Final:</label> -->
+                    <input id="lembrete_campo_data_fim"  placeholder="final" type="text" id="data_fim" name="data_fim"  maxlength="10" value="" autofocus autocomplete="off">
+                    <img src="/Icons/new.png" id="btn_novo" class="maozinha" width="24" height="24"/>
+                    <img src="/Icons/disk.png" id="btn_lembrar" class="maozinha" width="24" height="24"/>
+                    <img src="/Icons/trash.png" id="btn_del"  class="maozinha" width="24" height="24"/>
+                    
+                    <input id="id_4_del" type="hidden" value=undefined />
+                    <input id="id_4_save" type="hidden" value=undefined />
+                </div>
+            </div>    
+              
+        </div>    
+
     </div>
   </body>
-  <script src="options.js"></script>
+  <script src="scripts/options.js"></script>
+  <script src="scripts/lembretes_em_options.js"></script>
 </html>
