@@ -77,9 +77,9 @@ function atualizar_tabela_com_filtros(dados){
 function filtrar(event){
 	console.log("FILTRNADO: ", event.target.value);
 	var filter = document.forms["form_filter"].periodo.value;
-	chrome.storage.sync.get('dados', function(result) {	
-		console.log(result.dados.lembretes.filter(isToday));
-		if(result.dados != "undefined"){
+	chrome.storage.sync.get('dados', function(result) {			
+		if(result.dados != undefined){
+			console.log(result.dados.lembretes.filter(isToday));
 			if(filter === "hoje"){
 				atualizar_tabela_com_filtros(result.dados.lembretes.filter(isToday));
 			}else{
@@ -105,9 +105,9 @@ document.getElementById("pesquisar").addEventListener("keyup", filtrar_texto);
 
 document.getElementById("btn_novo").addEventListener("click", function(){	
 	document.getElementById("id_4_del").value = "undefined";
+	document.getElementById("lembrete_campo_descricao").focus();
 	limpar_campos_lembretes();
 });
-
 document.getElementById("btn_lembrar").addEventListener("click", function(){	
 	atualizar_tabela();	
 	console.log("id_4_del: ", id_4_del);
@@ -143,8 +143,6 @@ document.getElementById("btn_lembrar").addEventListener("click", function(){
 		}
     });
 });
-
-
 document.getElementById("btn_del").addEventListener("click", function(){
 	id_4_del = document.getElementById("id_4_del").value;
     if(id_4_del != "undefined"){

@@ -31,8 +31,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="372.51602"
-     inkscape:cy="913.1546"
+     inkscape:cx="392.30452"
+     inkscape:cy="777.38642"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -174,19 +174,17 @@
     </g>
     <g
        id="g73-0"
-       transform="matrix(1.0000015,0,0,1.1156317,0.65250763,130.15845)"
+       transform="matrix(0.98443003,0,0,1.055468,19.99527,130.51478)"
        inkscape:export-xdpi="29.090809"
        inkscape:export-ydpi="29.090809"
        inkscape:export-filename="C:\Users\andre\Documents\Dev\minhas extensões chrome\calculadora\Icons\icon_9notif_128x.png">
       <g
          id="g55-7">
-        <rect
-           style="fill:#000080;fill-rule:evenodd;stroke-width:0.298911"
+        <path
            id="rect38-5"
-           width="99.921852"
-           height="93.089584"
-           x="6.0476217"
-           y="44.147617" />
+           style="fill:#000080;fill-rule:evenodd;stroke:#000000;stroke-width:1.62464;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m 7.8430059,45.587518 c 1.2716354,-1.139836 3.5997081,-1.439901 3.5997081,-1.439901 h 91.186616 c 0,0 1.46618,0.35307 2.25346,1.05875 0.7651,0.685805 1.08668,1.850872 1.08668,1.850872 v 88.045691 c 0,0 -0.053,0.95362 -0.61421,1.45667 -0.56455,0.50604 -1.78099,0.6776 -1.78099,0.6776 H 8.7496374 c 0,0 -0.9312176,-0.36084 -1.5680888,-0.9317 -0.7171276,-0.6428 -1.1339269,-1.79547 -1.1339269,-1.79547 V 48.497139 c 0,0 0.651649,-1.884429 1.7953842,-2.909621 z"
+           sodipodi:nodetypes="sccsccsccsccs" />
         <rect
            style="fill:#008000;fill-rule:evenodd;stroke-width:0.264583"
            id="rect10-3"
@@ -287,26 +285,5 @@
            y="111.79996" />
       </g>
     </g>
-    <ellipse
-       style="fill:#000080;stroke-width:0.301252"
-       id="path87"
-       cx="85.927162"
-       cy="264.25546"
-       rx="31.003265"
-       ry="26.66745"
-       inkscape:export-filename="C:\Users\andre\Documents\Dev\minhas extensões chrome\calculadora\Icons\icon_9notif_128x.png"
-       inkscape:export-xdpi="29.090809"
-       inkscape:export-ydpi="29.090809" />
-    <text
-       xml:space="preserve"
-       id="text89"
-       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect91);fill:#e6e6e6;fill-opacity:1;stroke:none;"
-       transform="matrix(3.4280407,0,0,3.5629262,-140.99126,-609.30457)"
-       inkscape:export-filename="C:\Users\andre\Documents\Dev\minhas extensões chrome\calculadora\Icons\icon_9notif_128x.png"
-       inkscape:export-xdpi="29.090809"
-       inkscape:export-ydpi="29.090809"><tspan
-         x="59.080078"
-         y="248.94648"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:10.5833px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffff00">9+ </tspan></tspan></text>
   </g>
 </svg>
