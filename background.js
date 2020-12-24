@@ -1,19 +1,59 @@
 'use strict';
 
+function getTIMESTAMP() {
+	var date = new Date();
+	var year = date.getFullYear();
+	var month = ("0" + (date.getMonth() + 1)).substr(-2);
+	var day = ("0" + date.getDate()).substr(-2);
+	var hour = ("0" + date.getHours()).substr(-2);
+	var minutes = ("0" + date.getMinutes()).substr(-2);
+	var seconds = ("0" + date.getSeconds()).substr(-2);
+	var carimbo = year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;	
+	return carimbo;
+}
+
 chrome.runtime.onInstalled.addListener(function() { 
   console.log("iniciado/instalado");  
 });
 get_notifications();
-chrome.runtime.onSuspend.addListener(function() {  
-  get_notifications();
+
+chrome.alarms.create("teste",{delayInMinutes: 120});
+
+chrome.alarms.onAlarm.addListener(function() {
+	chrome.storage.sync.get('dados', function(result) {			
+		if(result.dados != undefined){
+			var qtd_lembrete = result.dados.lembretes.filter(isToday).length
+			console.log("Atualizando notificações..");
+			/* 
+			var options = {
+				type: "basic",
+				title: "Lembretes",
+				message: "Existem " + qtd_lembrete + " lembretes para hoje. Verifique na extensão!",
+				iconUrl: "images/get_started128.png"
+			  };
+			chrome.notifications.create("" + getTIMESTAMP(), options, function(){});
+			*/
+			notificacoes(qtd_lembrete, result.dados.lembretes.length); 
+		}else{
+			console.log("Atualizando notificações..sem nada");
+		}
+	});
+
+	
+});
+
+chrome.runtime.onStartup.addListener(function() {  
+  	get_notifications();
 });
 
 
 function get_notifications() {
 	chrome.storage.sync.get('dados', function(result) {			
 		if(result.dados != undefined){
-      console.log("Atualizando notificações..");
+      		console.log("Atualizando notificações..");
 			notificacoes(result.dados.lembretes.filter(isToday).length, result.dados.lembretes.length); 
+		}else{
+			console.log("Atualizando notificações..sem nada");
 		}
 	});
 }
@@ -36,8 +76,6 @@ function notificacoes(qtd, tt){
 		chrome.browserAction.setBadgeText({text: ""}, () => { });
 	}
 }
-  
-
 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
   console.log('TESTETSETSETTETESTE');

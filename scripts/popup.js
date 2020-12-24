@@ -7,21 +7,21 @@ document.getElementById("conteudo_folha2").style.display = "block";
 document.getElementById("conteudo_folha1").style.display = "none";
 document.getElementById("conteudo_folha3").style.display = "none";
 
-document.getElementById("aba1").addEventListener("click", function(){
+document.getElementById("aba1").addEventListener("click", function(event){
 	document.getElementById("conteudo_folha3").style.display = "none";
 	document.getElementById("conteudo_folha2").style.display = "none";
 	document.getElementById("conteudo_folha1").style.display = "block";
 	atualizar_tabela();
 	get_notifications();
 });
-document.getElementById("aba2").addEventListener("click", function(){
+document.getElementById("aba2").addEventListener("click", function(event){
 	document.getElementById("conteudo_folha1").style.display = "none";
 	document.getElementById("conteudo_folha2").style.display = "block";
 	document.getElementById("conteudo_folha3").style.display = "none";
 	atualizar_tabela();
 	get_notifications();
 });
-document.getElementById("aba3").addEventListener("click", function(){
+document.getElementById("aba3").addEventListener("click", function(event){
 	document.getElementById("conteudo_folha1").style.display = "none";
 	document.getElementById("conteudo_folha2").style.display = "none";
 	document.getElementById("conteudo_folha3").style.display = "block";	
@@ -51,7 +51,10 @@ elemento_ch_nova.addEventListener("change", calcular_ch);
 elemento_data_de_lotacao.focus();
 
 function calcular_ch(event) {	
-	var array_data_ltc = elemento_data_de_lotacao.value.split("/");            
+	var valor = mascararX(elemento_data_de_lotacao.value);
+	elemento_data_de_lotacao.value = valor;	
+
+	var array_data_ltc = valor.split("/");            
 		
 	var dia = array_data_ltc[0];
 	var mes = array_data_ltc[1];
@@ -100,7 +103,12 @@ function is_teclado_numerico(keyCode){
 		return false;
 	}
 }
+function mascararX(valor){	
+	var v = valor.replace(/\D/g, ""); //Remove tudo o que não é dígito
+	v = valor.replace(/^(\d{2})(\d{2})(\d{4})/g, "$1\/$2\/$3"); 
 
+    return v;
+}
 function mascarar(valor){
 	var mascarado = valor;	
 	if(typeof valor === 'number'){
@@ -158,7 +166,6 @@ elemento_num_dias1.addEventListener('change', (event) => {
 	calcular_diferenca_pra_hoje();
 });
 
-
 function calcular_diferenca_pra_hoje() {
 	// pega a data de hoje e mostra no campo de texto
 	var data_atual = new Date();
@@ -179,12 +186,13 @@ function calcular_diferenca_pra_hoje() {
 }
 
 function calcular_data_qq_mais_dias(event) {
-	var valor = (elemento_data_inicial_qq.value);
-	//elemento_data_inicial_qq.value = valor;
+	var valor = mascararX(elemento_data_inicial_qq.value);
+	elemento_data_inicial_qq.value = valor;	
 	var array_data_inicial_qq = valor.split("/");   
 	var dia = array_data_inicial_qq[0];
 	var mes = array_data_inicial_qq[1];
 	var ano = array_data_inicial_qq[2];
+	
 				
 	var num_dias2 = parseInt(elemento_num_dias2.value);
 	var data_ins = new Date( [mes, "/", dia, "/", ano].join('') );            
@@ -197,16 +205,17 @@ function calcular_data_qq_mais_dias(event) {
    
 }
 
+
 function calcular_duas_datas() {
-	var valor_data1 = mascarar(elemento_data_inicial2.value);
-	//elemento_data_inicial2.value = valor_data1;
+	var valor_data1 = mascararX(elemento_data_inicial2.value);
+	elemento_data_inicial2.value = valor_data1;
 	var array_data_inicial2 = valor_data1.split("/");   
 	var dia_ini = array_data_inicial2[0];
 	var mes_ini = array_data_inicial2[1];
 	var ano_ini = array_data_inicial2[2];
 
-	var valor_data2 = mascarar(elemento_data_final.value);
-	//elemento_data_final.value = valor_data2;
+	var valor_data2 = mascararX(elemento_data_final.value);
+	elemento_data_final.value = valor_data2;
 	var array_data_final = valor_data2.split("/");   
 	var dia_fim = array_data_final[0];
 	var mes_fim = array_data_final[1];
@@ -220,3 +229,12 @@ function calcular_duas_datas() {
 	elemento_num_dias3.value = !isNaN(dias)? dias+1: "--";
 
 }
+
+
+var options = {
+	type: "basic",
+	title: "Lembretes",
+	message: "Existem lembretes para hoje. Verifique na extenção!",
+	iconUrl: "images/get_started128.png"
+  };
+chrome.notifications.create("012s11", options, function(){});

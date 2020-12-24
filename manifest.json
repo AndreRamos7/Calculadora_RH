@@ -1,15 +1,15 @@
 {
   "name": "Calculadora de datas",
-  "version": "2.1",
+  "version": "2.2",
   "description": "Cálculos básicos de datas e outras utilidades.",
-  "permissions": ["storage"],  
+  "permissions": ["storage", "alarms"],  
   "options_page": "options.html",
   "background": {
     "scripts": ["background.js"],
     "persistent": false
   },
   "browser_action": {     
-	  "default_title": "Efetue cálculos básicos de datas. [v2.1]",	
+	  "default_title": "Efetue cálculos básicos de datas. [v2.2]",	
     "default_popup": "popup.html",
     "default_icon": {
       "16": "images/get_started16.png",
