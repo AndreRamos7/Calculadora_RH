@@ -1,4 +1,7 @@
 'use strict';
+const menuItems = {
+    'diff_hoje': 'Quantidade de dias?'
+};
 
 function getTIMESTAMP() {
 	var date = new Date();
@@ -13,7 +16,16 @@ function getTIMESTAMP() {
 }
 
 chrome.runtime.onInstalled.addListener(function() { 
-  console.log("iniciado/instalado");  
+	console.log("iniciado/instalado");  
+	for (let key of Object.keys(menuItems)) {
+		chrome.contextMenus.create({
+		  id: key,
+		  title: menuItems[key],
+		  type: 'normal',
+		  contexts: ['selection'],
+		});
+	  }
+
 });
 get_notifications();
 
@@ -38,8 +50,6 @@ chrome.alarms.onAlarm.addListener(function() {
 			console.log("Atualizando notificações..sem nada");
 		}
 	});
-
-	
 });
 
 chrome.runtime.onStartup.addListener(function() {  
@@ -89,3 +99,37 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
                 storageChange.newValue);
   }
 });
+
+
+function calcular_dias_decorridos(data_selecionada) {
+    // pega a data de hoje e mostra no campo de texto
+    var array_data_selecionada = data_selecionada.split("/");   
+    var dia_ini = array_data_selecionada[0];
+    var mes_ini = array_data_selecionada[1];
+    var ano_ini = array_data_selecionada[2];
+  
+    var data_atual = new Date();
+    var dia_fim = data_atual.getDate();
+    var mes_fim = data_atual.getMonth() + 1;
+    var ano_fim = data_atual.getFullYear();
+    //var agora = new Date([mes-1, "/" , dia, "/" , ano].join(''));        
+    
+    var data_ini = new Date( [mes_ini, "/", dia_ini, "/", ano_ini].join('') );            
+    var data_fim = new Date( [mes_fim, "/", dia_fim, "/", ano_fim].join('') );            
+  
+    var diferenca = Math.abs(data_fim.getTime() - data_ini.getTime());
+    var dias = Math.ceil(diferenca / (1000 * 60 * 60 * 24));
+    return dias;
+  }
+  
+  
+chrome.contextMenus.onClicked.addListener((result) => {	
+	console.log("contextMenus ", result.menuItemId);
+	var qtd_dias = undefined;
+	if(result.menuItemId == "diff_hoje"){
+		var qtd_dias = calcular_dias_decorridos(result.selectionText);
+	}
+	alert("A diferença de " + result.selectionText + " para hoje = " + qtd_dias + " dias.");
+});
+
+  

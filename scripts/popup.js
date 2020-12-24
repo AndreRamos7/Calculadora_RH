@@ -229,12 +229,3 @@ function calcular_duas_datas() {
 	elemento_num_dias3.value = !isNaN(dias)? dias+1: "--";
 
 }
-
-
-var options = {
-	type: "basic",
-	title: "Lembretes",
-	message: "Existem lembretes para hoje. Verifique na extenção!",
-	iconUrl: "images/get_started128.png"
-  };
-chrome.notifications.create("012s11", options, function(){});

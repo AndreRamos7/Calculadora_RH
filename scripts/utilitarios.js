@@ -10,4 +10,4 @@ function getTIMESTAMP() {
     var carimbo = year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
     var passhash = CryptoJS.MD5(carimbo).toString();
     return passhash;
-  }
+}
