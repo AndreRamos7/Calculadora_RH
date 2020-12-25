@@ -31,17 +31,18 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="392.30452"
+     inkscape:cx="355.16166"
      inkscape:cy="777.38642"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g894"
      inkscape:document-rotation="0"
      showgrid="false"
      inkscape:window-width="1366"
      inkscape:window-height="705"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     inkscape:lockguides="false" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -180,109 +181,136 @@
        inkscape:export-filename="C:\Users\andre\Documents\Dev\minhas extensões chrome\calculadora\Icons\icon_9notif_128x.png">
       <g
          id="g55-7">
-        <path
-           id="rect38-5"
-           style="fill:#000080;fill-rule:evenodd;stroke:#000000;stroke-width:1.62464;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           d="m 7.8430059,45.587518 c 1.2716354,-1.139836 3.5997081,-1.439901 3.5997081,-1.439901 h 91.186616 c 0,0 1.46618,0.35307 2.25346,1.05875 0.7651,0.685805 1.08668,1.850872 1.08668,1.850872 v 88.045691 c 0,0 -0.053,0.95362 -0.61421,1.45667 -0.56455,0.50604 -1.78099,0.6776 -1.78099,0.6776 H 8.7496374 c 0,0 -0.9312176,-0.36084 -1.5680888,-0.9317 -0.7171276,-0.6428 -1.1339269,-1.79547 -1.1339269,-1.79547 V 48.497139 c 0,0 0.651649,-1.884429 1.7953842,-2.909621 z"
-           sodipodi:nodetypes="sccsccsccsccs" />
-        <rect
-           style="fill:#008000;fill-rule:evenodd;stroke-width:0.264583"
-           id="rect10-3"
-           width="88.446426"
-           height="82.398804"
-           x="11.339286"
-           y="48.380955" />
-        <rect
-           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0920388"
-           id="rect12-4"
-           width="68.623978"
-           height="12.851185"
-           x="21.317854"
-           y="60.627384" />
-        <rect
-           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
-           id="rect14-7"
-           width="12.851188"
-           height="12.851185"
-           x="21.544645"
-           y="80.130959" />
-        <rect
-           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
-           id="rect16-2"
-           width="12.851188"
-           height="12.851185"
-           x="39.687496"
-           y="80.055367" />
-        <rect
-           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
-           id="rect18-8"
-           width="12.851188"
-           height="12.851185"
-           x="58.427837"
-           y="80.12558" />
-        <rect
-           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
-           id="rect20-3"
-           width="12.851188"
-           height="12.851185"
-           x="76.570694"
-           y="80.049988" />
-        <rect
-           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
-           id="rect22-2"
-           width="12.851188"
-           height="12.851185"
-           x="21.544645"
-           y="96.005951" />
-        <rect
-           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
-           id="rect24-8"
-           width="12.851188"
-           height="12.851185"
-           x="39.687496"
-           y="95.930359" />
-        <rect
-           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
-           id="rect26-2"
-           width="12.851188"
-           height="12.851185"
-           x="58.427837"
-           y="96.000572" />
-        <rect
-           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
-           id="rect28-7"
-           width="12.851188"
-           height="12.851185"
-           x="76.570694"
-           y="95.92498" />
-        <rect
-           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
-           id="rect30-9"
-           width="12.851188"
-           height="12.851185"
-           x="21.544645"
-           y="111.88096" />
-        <rect
-           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
-           id="rect32-9"
-           width="12.851188"
-           height="12.851185"
-           x="39.687496"
-           y="111.80536" />
-        <rect
-           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
-           id="rect34-1"
-           width="12.851188"
-           height="12.851185"
-           x="58.427837"
-           y="111.87556" />
-        <rect
-           style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0398295"
-           id="rect36-0"
-           width="12.851188"
-           height="12.851185"
-           x="76.570694"
-           y="111.79996" />
+        <g
+           id="g894"
+           transform="matrix(1.0107936,0,0,1.0043766,-0.01886001,-0.60063807)"
+           inkscape:export-xdpi="30.028893"
+           inkscape:export-ydpi="30.028893">
+          <path
+             id="rect38-5"
+             style="fill:#008000;fill-opacity:1;fill-rule:evenodd;stroke:#051750;stroke-width:5.06272;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             d="m 7.8430059,45.424431 c 1.2716354,-1.141864 3.5997081,-1.442463 3.5997081,-1.442463 h 91.186616 c 0,0 1.46618,0.353698 2.25346,1.060634 0.7651,0.687025 1.08668,1.854165 1.08668,1.854165 v 88.202363 c 0,0 -0.053,0.95532 -0.61421,1.45926 -0.56455,0.50694 -1.78099,0.67881 -1.78099,0.67881 H 8.7496374 c 0,0 -0.9312176,-0.36148 -1.5680888,-0.93336 C 6.464421,135.6599 6.0476217,134.50518 6.0476217,134.50518 V 48.33923 c 0,0 0.651649,-1.887783 1.7953842,-2.914799 z"
+             sodipodi:nodetypes="sccsccsccsccs"
+             inkscape:export-xdpi="31.12146"
+             inkscape:export-ydpi="31.12146" />
+          <rect
+             style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.104472"
+             id="rect12-4"
+             width="77.824577"
+             height="14.600112"
+             x="17.478312"
+             y="55.468567"
+             inkscape:export-xdpi="31.12146"
+             inkscape:export-ydpi="31.12146" />
+          <rect
+             style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0452097"
+             id="rect14-7"
+             width="14.574182"
+             height="14.600112"
+             x="17.73551"
+             y="77.626396"
+             inkscape:export-xdpi="31.12146"
+             inkscape:export-ydpi="31.12146" />
+          <rect
+             style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0452097"
+             id="rect16-2"
+             width="14.574182"
+             height="14.600112"
+             x="38.310818"
+             y="77.540512"
+             inkscape:export-xdpi="31.12146"
+             inkscape:export-ydpi="31.12146" />
+          <rect
+             style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0452097"
+             id="rect18-8"
+             width="14.574182"
+             height="14.600112"
+             x="59.563728"
+             y="77.620285"
+             inkscape:export-xdpi="31.12146"
+             inkscape:export-ydpi="31.12146" />
+          <rect
+             style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0452097"
+             id="rect20-3"
+             width="14.574182"
+             height="14.600112"
+             x="80.139053"
+             y="77.534409"
+             inkscape:export-xdpi="31.12146"
+             inkscape:export-ydpi="31.12146" />
+          <rect
+             style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0452097"
+             id="rect22-2"
+             width="14.574182"
+             height="14.600112"
+             x="17.73551"
+             y="95.661827"
+             inkscape:export-xdpi="31.12146"
+             inkscape:export-ydpi="31.12146" />
+          <rect
+             style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0452097"
+             id="rect24-8"
+             width="14.574182"
+             height="14.600112"
+             x="38.310818"
+             y="95.575943"
+             inkscape:export-xdpi="31.12146"
+             inkscape:export-ydpi="31.12146" />
+          <rect
+             style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0452097"
+             id="rect26-2"
+             width="14.574182"
+             height="14.600112"
+             x="59.563728"
+             y="95.655716"
+             inkscape:export-xdpi="31.12146"
+             inkscape:export-ydpi="31.12146" />
+          <rect
+             style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0452097"
+             id="rect28-7"
+             width="14.574182"
+             height="14.600112"
+             x="80.139053"
+             y="95.569832"
+             inkscape:export-xdpi="31.12146"
+             inkscape:export-ydpi="31.12146" />
+          <rect
+             style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0452097"
+             id="rect30-9"
+             width="14.574182"
+             height="14.600112"
+             x="17.73551"
+             y="113.69727"
+             inkscape:export-xdpi="31.12146"
+             inkscape:export-ydpi="31.12146" />
+          <rect
+             style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0452097"
+             id="rect32-9"
+             width="14.574182"
+             height="14.600112"
+             x="38.310818"
+             y="113.61139"
+             inkscape:export-xdpi="31.12146"
+             inkscape:export-ydpi="31.12146" />
+          <rect
+             style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0452097"
+             id="rect34-1"
+             width="14.574182"
+             height="14.600112"
+             x="59.563728"
+             y="113.69114"
+             inkscape:export-xdpi="31.12146"
+             inkscape:export-ydpi="31.12146" />
+          <rect
+             style="fill:#ffffff;fill-rule:evenodd;stroke-width:0.0452097"
+             id="rect36-0"
+             width="14.574182"
+             height="14.600112"
+             x="80.139053"
+             y="113.60524"
+             inkscape:export-xdpi="31.12146"
+             inkscape:export-ydpi="31.12146" />
+        </g>
       </g>
     </g>
   </g>

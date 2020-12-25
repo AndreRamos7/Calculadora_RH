@@ -29,9 +29,10 @@ function atualizar_tabela_com_filtros(dados){
 	var cores = ["#bfbfbf", "white"];
 	
 	dados.forEach(function(item, index, array) {
-		console.log("forEach", item, index);
+		//console.log("forEach", item, index);
 
 		var linha = document.createElement("tr");
+		linha.id = item.id;
 		linha.className = "unselected";
 		linha.style.backgroundColor = cores[index % 2];
 		var coluna_ordem = document.createElement("td");
@@ -64,7 +65,7 @@ function atualizar_tabela_com_filtros(dados){
 		
 		linha.style.cursor = "pointer";
 		linha.addEventListener("click", function(event){
-			console.log("ID do botao: ", event.target.id);
+			console.log("ID do botao: ", event.target.parentNode.id);
 			document.getElementById("id_4_del").value = item.id;
 			mostrar_dados_por_id(item.id);				
 		});
@@ -75,7 +76,7 @@ function atualizar_tabela_com_filtros(dados){
 }
 
 function filtrar(event){
-	console.log("FILTRNADO: ", event.target.value);
+	//console.log("FILTRNADO: ", event.target.value);
 	var filter = document.forms["form_filter"].periodo.value;
 	chrome.storage.sync.get('dados', function(result) {			
 		if(result.dados != undefined){
@@ -110,17 +111,17 @@ document.getElementById("btn_novo").addEventListener("click", function(){
 });
 document.getElementById("btn_lembrar").addEventListener("click", function(){	
 	atualizar_tabela();	
+	var id_4_del = document.getElementById("id_4_del").value;
 	console.log("id_4_del: ", id_4_del);
-	chrome.storage.sync.get('dados', function(result) {			
-		//console.log("result.dados:: ", result.dados);
+	chrome.storage.sync.get('dados', function(result) {	
 		if(result.dados != undefined){
 			var idx_do_id = result.dados.lembretes.findIndex(tem_esse_Id);
 			if(result.dados.lembretes.length <= LIMITE_DADOS){
 				var lembrete_campo_descricao = document.getElementById("lembrete_campo_descricao").value;
 				var lembrete_campo_data_ini = document.getElementById("lembrete_campo_data_ini").value;
 				var lembrete_campo_data_fim = document.getElementById("lembrete_campo_data_fim").value;
-				
-				if(idx_do_id != -1){
+				//console.log("idx_do_id: ", idx_do_id);
+				if(idx_do_id != -1 && id_4_del != undefined){
 					result.dados.lembretes.splice(idx_do_id, 1, {"id": id_4_del, "descricao": lembrete_campo_descricao, "inicio": lembrete_campo_data_ini, "fim": lembrete_campo_data_fim});			
 					chrome.storage.sync.set({dados: result.dados}, function() {});
 				}else{
@@ -170,12 +171,11 @@ document.getElementById("btn_del").addEventListener("click", function(){
 
 function tem_esse_Id(element, index, array) {
 	var id_4_del = document.getElementById("id_4_del").value;
-	if(element.id == id_4_del){
+	if(element.id === id_4_del){
 		return true;
 	}
 	return false;	
-  }
-
+}
 
 function mostrar_dados_por_id(id){
 	var lembrete_campo_descricao = document.getElementById("lembrete_campo_descricao");
@@ -204,7 +204,7 @@ function limpar_campos_lembretes(){
 	lembrete_campo_descricao.value = "";
 	lembrete_campo_data_ini.value =  "";
 	lembrete_campo_data_fim.value =  "";
-	id_4_del = undefined;
+	id_4_del.value = "undefined";
 }
 function get_notifications() {
 	chrome.storage.sync.get('dados', function(result) {			

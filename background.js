@@ -29,28 +29,32 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 get_notifications();
 
-chrome.alarms.create("teste",{delayInMinutes: 120});
+chrome.alarms.create("meu_alarme",{delayInMinutes: 240});
 
 chrome.alarms.onAlarm.addListener(function() {
+	var carimbo = getTIMESTAMP();
 	chrome.storage.sync.get('dados', function(result) {			
 		if(result.dados != undefined){
-			var qtd_lembrete = result.dados.lembretes.filter(isToday).length
+			var qtd_lembrete_pra_hoje = result.dados.lembretes.filter(isToday).length
 			console.log("Atualizando notificações..");
-			/* 
-			var options = {
-				type: "basic",
-				title: "Lembretes",
-				message: "Existem " + qtd_lembrete + " lembretes para hoje. Verifique na extensão!",
-				iconUrl: "images/get_started128.png"
-			  };
-			chrome.notifications.create("" + getTIMESTAMP(), options, function(){});
-			*/
-			notificacoes(qtd_lembrete, result.dados.lembretes.length); 
+			if(qtd_lembrete_pra_hoje > 0){
+				var options = {
+					type: "basic",
+					title: "Lembretes",
+					message: "Existem " + qtd_lembrete_pra_hoje + " lembretes para hoje. Verifique na extensão!",
+					iconUrl: "images/get_started128.png",
+					isClickable: true
+				};
+				chrome.notifications.create(carimbo, options, function(){});
+			}
+			notificacoes(qtd_lembrete_pra_hoje, result.dados.lembretes.length); 
 		}else{
 			console.log("Atualizando notificações..sem nada");
 		}
 	});
 });
+
+
 
 chrome.runtime.onStartup.addListener(function() {  
   	get_notifications();
@@ -73,7 +77,7 @@ function isToday(value) {
 	var dia = data_atual.getDate();
 	var mes = data_atual.getMonth()+1;
 	var ano = data_atual.getFullYear();
-	//var agora = new Date([mes-1, "/" , dia, "/" , ano].join(''));            
+	            
 	var hoje = [dia, "/" , mes, "/" , ano].join('');
 	return value.fim === hoje;
 }
@@ -120,7 +124,7 @@ function calcular_dias_decorridos(data_selecionada) {
     var diferenca = Math.abs(data_fim.getTime() - data_ini.getTime());
     var dias = Math.ceil(diferenca / (1000 * 60 * 60 * 24));
     return dias;
-  }
+}
   
   
 chrome.contextMenus.onClicked.addListener((result) => {	
