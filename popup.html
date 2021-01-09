@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <title>Calculadora de datas</title>
     <style>
+        .dia {font-family: helvetica, arial; font-size: 8pt; color: #FFFFFF}
+        .data {font-family: helvetica, arial; font-size: 8pt; text-decoration:none; color:#191970}
+        .mes {font-family: helvetica, arial; font-size: 8pt}
+        .Cabecalho_Calendario {font-family: helvetica, arial; font-size: 10pt; color: #000000; text-decoration:none; font-weight:bold}
+    </style>
+    <style>
         #content{
             display: block;
             background-color: rgb(69, 114, 116);
@@ -244,8 +250,8 @@
 
             <div id="conteudo_folha1" class="conteudos">        
                 <form action="#">
-                    <label for="data_de_lotacao" >Data de Lotação:</label>
-                    <input class="campos_txt"  type="text" id="data_de_lotacao" name="fname"  maxlength="10" value="" autofocus autocomplete="off" placeholder="dd/mm/aaaa">
+                    <label for="data_de_lotacao" >Dia de Lotação:</label>
+                    <input class="campos_txt"  type="number" id="data_de_lotacao" name="fname"  maxlength="10" value="" max=30 autofocus autocomplete="off" >
                     
                     <label for="ch_anterior">CH Anterior:</label>
                     <input class="campos_txt" type="number" id="ch_anterior" name="ch_anterior" value="" autocomplete="off">
@@ -292,9 +298,9 @@
                     <div id="" class="ladoalado">                
                         <div >
                             <!--<label for="data_ini" >Início:</label> -->
-                            <input id="lembrete_campo_data_ini" placeholder="inicio" type="text" id="data_ini" name="data_ini"  maxlength="10" value="" autofocus autocomplete="off">
+                            <input id="lembrete_campo_data_ini" placeholder="inicio" type="text" id="data_ini" name="data_ini"  maxlength="10" value="" autocomplete="off" >
                             <!-- <label for="data_fim" >Final:</label> -->
-                            <input id="lembrete_campo_data_fim"  placeholder="final" type="text" id="data_fim" name="data_fim"  maxlength="10" value="" autofocus autocomplete="off">
+                            <input id="lembrete_campo_data_fim"  placeholder="final" type="text" id="data_fim" name="data_fim"  maxlength="10" value="" autocomplete="off">
                             <img src="/Icons/new.png" id="btn_novo" class="maozinha" width="24" height="24"/>
                             <img src="/Icons/disk.png" id="btn_lembrar" class="maozinha" width="24" height="24"/>
                             <img src="/Icons/trash.png" id="btn_del"  class="maozinha" width="24" height="24"/>

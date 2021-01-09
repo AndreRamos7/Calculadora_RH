@@ -37,7 +37,7 @@ chrome.alarms.onAlarm.addListener(function() {
 		if(result.dados != undefined){
 			var qtd_lembrete_pra_hoje = result.dados.lembretes.filter(isToday).length
 			console.log("Atualizando notificações..");
-			if(qtd_lembrete_pra_hoje > 0){
+			/*if(qtd_lembrete_pra_hoje > 0){
 				var options = {
 					type: "basic",
 					title: "Lembretes",
@@ -47,6 +47,7 @@ chrome.alarms.onAlarm.addListener(function() {
 				};
 				chrome.notifications.create(carimbo, options, function(){});
 			}
+			*/
 			notificacoes(qtd_lembrete_pra_hoje, result.dados.lembretes.length); 
 		}else{
 			console.log("Atualizando notificações..sem nada");

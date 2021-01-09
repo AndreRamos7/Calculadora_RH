@@ -1,4 +1,3 @@
-
 /* ================================================================================== */
 /* ==========================   LEMBRETES    ======================================== */
 /* ================================================================================== */
@@ -33,6 +32,7 @@ function atualizar_tabela_com_filtros(dados, lixeira=false){
 		console.log("forEach", item, index);
 
 		var linha = document.createElement("tr");
+		linha.id = item.id;
 		linha.className = "unselected";
 		linha.style.backgroundColor = cores[index % 2];
 		var coluna_ordem = document.createElement("td");
@@ -127,24 +127,23 @@ document.getElementById("periodo_todos").addEventListener("click", filtrar);
 document.getElementById("pesquisar").addEventListener("keyup", filtrar_texto);
 
 document.getElementById("btn_novo").addEventListener("click", function(){	
-	document.getElementById("id_4_save").value = "undefined";
+	document.getElementById("id_4_del").value = "undefined";
+	document.getElementById("lembrete_campo_descricao").focus();
 	limpar_campos_lembretes();
 });
-
 document.getElementById("btn_lembrar").addEventListener("click", function(){	
-	atualizar_tabela();
-	//var id_4_del = document.getElementById("id_4_del").value;
+	atualizar_tabela();	
+	var id_4_del = document.getElementById("id_4_del").value;
 	console.log("id_4_del: ", id_4_del);
-	chrome.storage.sync.get('dados', function(result) {			
-		//console.log("result.dados:: ", result.dados);
+	chrome.storage.sync.get('dados', function(result) {	
 		if(result.dados != undefined){
 			var idx_do_id = result.dados.lembretes.findIndex(tem_esse_Id);
 			if(result.dados.lembretes.length <= LIMITE_DADOS){
 				var lembrete_campo_descricao = document.getElementById("lembrete_campo_descricao").value;
 				var lembrete_campo_data_ini = document.getElementById("lembrete_campo_data_ini").value;
 				var lembrete_campo_data_fim = document.getElementById("lembrete_campo_data_fim").value;
-				
-				if(idx_do_id != -1){
+				//console.log("idx_do_id: ", idx_do_id);
+				if(idx_do_id != -1 && id_4_del != undefined){
 					result.dados.lembretes.splice(idx_do_id, 1, {"id": id_4_del, "descricao": lembrete_campo_descricao, "inicio": lembrete_campo_data_ini, "fim": lembrete_campo_data_fim});			
 					chrome.storage.sync.set({dados: result.dados}, function() {});
 				}else{
@@ -167,8 +166,6 @@ document.getElementById("btn_lembrar").addEventListener("click", function(){
 		}
     });
 });
-
-
 document.getElementById("btn_del").addEventListener("click", function(){
 	id_4_del = document.getElementById("id_4_del").value;
     if(id_4_del != "undefined"){
@@ -194,15 +191,13 @@ document.getElementById("btn_del").addEventListener("click", function(){
     }
 });
 
-
 function tem_esse_Id(element, index, array) {
 	var id_4_del = document.getElementById("id_4_del").value;
-	if(element.id == id_4_del){
+	if(element.id === id_4_del){
 		return true;
 	}
 	return false;	
-  }
-
+}
 
 function mostrar_dados_por_id(id){
 	var lembrete_campo_descricao = document.getElementById("lembrete_campo_descricao");
@@ -222,8 +217,6 @@ function mostrar_dados_por_id(id){
 	});	
 }
 
-
-
 function limpar_campos_lembretes(){
 	var lembrete_campo_descricao = document.getElementById("lembrete_campo_descricao");
 	var lembrete_campo_data_ini = document.getElementById("lembrete_campo_data_ini");
@@ -233,7 +226,7 @@ function limpar_campos_lembretes(){
 	lembrete_campo_descricao.value = "";
 	lembrete_campo_data_ini.value =  "";
 	lembrete_campo_data_fim.value =  "";
-	id_4_del = undefined;
+	id_4_del.value = "undefined";
 }
 function get_notifications() {
 	chrome.storage.sync.get('dados', function(result) {			

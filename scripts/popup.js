@@ -42,6 +42,7 @@ var elemento_ch_nova = document.getElementById("nova_ch");
 var elemento_ch_prop = document.getElementById("ch_prop");
 
 elemento_data_de_lotacao.addEventListener("keyup", calcular_ch);
+elemento_data_de_lotacao.addEventListener("change", calcular_ch);
 elemento_ch_anterior.addEventListener("keyup", calcular_ch);
 elemento_ch_anterior.addEventListener("change", calcular_ch);
 
@@ -51,25 +52,29 @@ elemento_ch_nova.addEventListener("change", calcular_ch);
 elemento_data_de_lotacao.focus();
 
 function calcular_ch(event) {	
-	var valor = mascararX(elemento_data_de_lotacao.value);
-	elemento_data_de_lotacao.value = valor;	
+	var valor = (elemento_data_de_lotacao.value);
+	if(valor != ""){
+		//elemento_data_de_lotacao.value = valor;	
 
-	var array_data_ltc = valor.split("/");            
+		//var array_data_ltc = valor.split("/");            
+			
+		var dia = valor;//array_data_ltc[0];
+		/*
+		var mes = array_data_ltc[1];
+		var ano = array_data_ltc[2];
 		
-	var dia = array_data_ltc[0];
-	var mes = array_data_ltc[1];
-	var ano = array_data_ltc[2];
-
-	var data_ins = new Date( [mes, "/", dia, "/", ano].join('') );
-	var hoje = new Date();
-	var diferenca = Math.abs(data_ins.getTime() - hoje.getTime());
-	var dias = Math.ceil(diferenca / (1000 * 60 * 60 * 24));
-
-	var dias_restantes = 30 - dia + 1;     
-	var difer_ch = Math.abs(elemento_ch_nova.value - elemento_ch_anterior.value);       
-	var novo_valor = parseFloat((difer_ch/30)*dias_restantes);
-	var ch_prop = novo_valor + parseInt(elemento_ch_anterior.value);
-	elemento_ch_prop.value = (!isNaN(ch_prop))? Math.round(ch_prop):"";
+		var data_ins = new Date( [mes, "/", dia, "/", ano].join('') );
+		var hoje = new Date();
+		//var diferenca = Math.abs(data_ins.getTime() - hoje.getTime());
+		//var dias = Math.ceil(diferenca / (1000 * 60 * 60 * 24));
+		*/
+		var dias_restantes = 30 - dia + 1;     
+		var difer_ch = (elemento_ch_nova.value - elemento_ch_anterior.value);       
+		var novo_valor = parseFloat((difer_ch/30)*dias_restantes);
+		var ch_prop = novo_valor + parseInt(elemento_ch_anterior.value);
+		elemento_ch_prop.value = (!isNaN(ch_prop))? Math.round(ch_prop) + "h":"";
+	}
+	
 }  
 /*
   =================================  CÓDIGO PARA ABA DE CÁLCULO DE DATAS

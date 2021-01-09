@@ -1,4 +1,3 @@
-
 /* ================================================================================== */
 /* ==========================   LEMBRETES    ======================================== */
 /* ================================================================================== */
@@ -226,7 +225,32 @@ function isToday(value) {
 	var ano = data_atual.getFullYear();
 	//var agora = new Date([mes-1, "/" , dia, "/" , ano].join(''));            
 	var hoje = [dia, "/" , mes, "/" , ano].join('');
-	return value.fim === hoje;
+	return calcular_datas(hoje, value.fim);
+}
+
+function calcular_datas(valor_data1, valor_data2) {
+	//var valor_data1 = ;
+	var array_data_inicial2 = valor_data1.split("/");   
+	var dia_ini = array_data_inicial2[0];
+	var mes_ini = array_data_inicial2[1];
+	var ano_ini = array_data_inicial2[2];
+
+	//var valor_data2 = ;	
+	var array_data_final = valor_data2.split("/");   
+	var dia_fim = array_data_final[0];
+	var mes_fim = array_data_final[1];
+	var ano_fim = array_data_final[2];
+	
+	var data_ini = new Date( [mes_ini, "/", dia_ini, "/", ano_ini].join('') );            
+	var data_fim = new Date( [mes_fim, "/", dia_fim, "/", ano_fim].join('') );            
+
+	var diferenca = Math.abs(data_fim.getTime() - data_ini.getTime());
+	
+	var dias = Math.ceil(diferenca / (1000 * 60 * 60 * 24));
+	var qtd_dias = !isNaN(dias)? dias + 1: "undefined";
+	if(qtd_dias != "undefined"){		
+		return qtd_dias == 1;
+	}
 }
 
 /*
