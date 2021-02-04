@@ -1,0 +1,1 @@
+Extensão Chrome que efetua cálculos básicos de data para ser utilizado em setor de RH.
