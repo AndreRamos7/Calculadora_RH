@@ -72,7 +72,7 @@ function calcular_ch(event) {
 		var difer_ch = (elemento_ch_nova.value - elemento_ch_anterior.value);       
 		var novo_valor = parseFloat((difer_ch/30)*dias_restantes);
 		var ch_prop = novo_valor + parseInt(elemento_ch_anterior.value);
-		elemento_ch_prop.value = (!isNaN(ch_prop))? Math.round(ch_prop) + "h":"";
+		elemento_ch_prop.value = (!isNaN(ch_prop))? Math.round(ch_prop) + "":"";
 	}
 	
 }  

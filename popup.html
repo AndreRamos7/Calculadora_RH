@@ -51,6 +51,7 @@
         }
         #conteudo_folha1{
             background-color: #65b4b7;
+            height: 160px;
         }
         #aba2{ 
             background-color: #a6e4d6;                       
@@ -125,7 +126,27 @@
         .maozinha{
             cursor: pointer;
         }
+        .ladoalado{
+            float: left;
+        }
+        /* ========================================== ABA DE CH PROPORCIONAL =============== */
+        #conteudo_folha1 {
 
+        }
+        #conteudo_folha1 #entrada{
+            display: block;
+            margin-right: 10px;
+        }
+
+        #conteudo_folha1 #resultado{
+            display: block;
+        }
+        #conteudo_folha1 #resultado #ch_prop{
+            width: 215px;
+            height: 120px;
+            font-size: 70px;
+            text-align: center;
+        }
         /* ========================================== ABA DE LEMBRETES =============== */
         #conteudo_folha3 .ladoalado{
             float: left;
@@ -250,18 +271,20 @@
 
             <div id="conteudo_folha1" class="conteudos">        
                 <form action="#">
-                    <label for="data_de_lotacao" >Dia de Lotação:</label>
-                    <input class="campos_txt"  type="number" id="data_de_lotacao" name="fname"  maxlength="10" value="" max=30 autofocus autocomplete="off" >
-                    
-                    <label for="ch_anterior">CH Anterior:</label>
-                    <input class="campos_txt" type="number" id="ch_anterior" name="ch_anterior" value="" autocomplete="off">
-                    
-                    <label for="nova_ch" >Nova CH:</label>
-                    <input class="campos_txt" type="number" id="nova_ch" name="nova_ch" value="" autocomplete="off">
-                    
-                    <label for="ch_prop">CH Proporcional:</label>
-                    <input class="campos_txt  resultado" type="text" id="ch_prop" name="ch_prop" value="" readonly autocomplete="off">
-                    
+                    <div class="ladoalado " id="entrada">    
+                        <label for="data_de_lotacao" >Dia de Lotação:</label>
+                        <input class="campos_txt"  type="number" id="data_de_lotacao" name="fname"  maxlength="10" value="" max=30 autofocus autocomplete="off" >
+                        
+                        <label for="ch_anterior">CH Anterior:</label>
+                        <input class="campos_txt" type="number" id="ch_anterior" name="ch_anterior" value="" autocomplete="off">
+                        
+                        <label for="nova_ch" >Nova CH:</label>
+                        <input class="campos_txt" type="number" id="nova_ch" name="nova_ch" value="" autocomplete="off">
+                    </div>
+                    <div  class="ladoalado " id="resultado">
+                        <label for="ch_prop">CH Proporcional (horas):</label>
+                        <input class="campos_txt  resultado" type="text" id="ch_prop" name="ch_prop" value="" readonly autocomplete="off">
+                    </div>
                     <!-- <input type="submit" value="Submit"> -->
                 </form> 
             </div>
