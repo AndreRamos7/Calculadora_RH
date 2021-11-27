@@ -80,18 +80,18 @@ function calcular_ch(event) {
   =================================  CÓDIGO PARA ABA DE CÁLCULO DE DATAS
 */
 
-_elemento_data_atual = document.getElementById("data_atual");
-elemento_data_inicial_qq = document.getElementById("data_inicial_qq");
-elemento_data_inicial2 = document.getElementById("data_inicial2");
+var _elemento_data_atual = document.getElementById("data_atual");
+var elemento_data_inicial_qq = document.getElementById("data_inicial_qq");
+var elemento_data_inicial2 = document.getElementById("data_inicial2");
 
-elemento_num_dias1 = document.getElementById("num_dias1");
-elemento_num_dias2 = document.getElementById("num_dias2");
-elemento_data_final = document.getElementById("data_final");
+var elemento_num_dias1 = document.getElementById("num_dias1");
+var elemento_num_dias2 = document.getElementById("num_dias2");
+var elemento_data_final = document.getElementById("data_final");
 
-elemento_data_prevista1 = document.getElementById("data_prevista1");
-elemento_data_prevista2 = document.getElementById("data_prevista2");
-elemento_num_dias3 = document.getElementById("num_dias3");
-elemento_msg = document.getElementById("msg");
+var elemento_data_prevista1 = document.getElementById("data_prevista1");
+var elemento_data_prevista2 = document.getElementById("data_prevista2");
+var elemento_num_dias3 = document.getElementById("num_dias3");
+var elemento_msg = document.getElementById("msg");
 calcular_diferenca_pra_hoje();
 
 function mensagem(msg, color = "red"){
@@ -111,7 +111,7 @@ function is_teclado_numerico(keyCode){
 function mascararX(valor){	
 	var v = valor.replace(/\D/g, ""); //Remove tudo o que não é dígito
 	v = valor.replace(/^(\d{2})(\d{2})(\d{4})/g, "$1\/$2\/$3"); 
-
+	elemento_msg.innerText = "";
     return v;
 }
 function mascarar(valor){
@@ -200,7 +200,14 @@ function calcular_data_qq_mais_dias(event) {
 	
 				
 	var num_dias2 = parseInt(elemento_num_dias2.value);
-	var data_ins = new Date( [mes, "/", dia, "/", ano].join('') );            
+	var data_ins = new Date( [mes, "/", dia, "/", ano].join('') );  
+	
+	if(data_ins.getDate() != dia && (data_ins.getMonth()+1) != mes && elemento_data_inicial_qq.value.length == 10){		
+		//elemento_msg.innerText = "Preencha a Data Inicial corretamente!";
+		elemento_data_inicial_qq.value = [data_ins.getDate(), "/", data_ins.getMonth() + 1, "/", data_ins.getFullYear()].join('');
+
+	}
+
 	data_ins.setDate(data_ins.getDate() + num_dias2 - 1);  
 	dia = (!isNaN(data_ins.getDate()))? data_ins.getDate(): "";
 	mes = (!isNaN(data_ins.getMonth() + 1))? data_ins.getMonth() + 1: "";
@@ -229,7 +236,18 @@ function calcular_duas_datas() {
 	var data_ini = new Date( [mes_ini, "/", dia_ini, "/", ano_ini].join('') );            
 	var data_fim = new Date( [mes_fim, "/", dia_fim, "/", ano_fim].join('') );            
 
-	var diferenca = Math.abs(data_fim.getTime() - data_ini.getTime());
+	console.log("DAY>: " +  data_ini.getDate() + " mes: " + (data_ini.getMonth() + 1));
+	if(data_ini.getDate() != dia_ini && (data_ini.getMonth()+1) != mes_ini && elemento_data_inicial2.value.length == 10){		
+		elemento_msg.innerText = "Preencha a Data Inicial corretamente!";
+		elemento_data_inicial2.value = [data_ini.getDate(), "/", data_ini.getMonth() + 1, "/", data_ini.getFullYear()].join('');
+
+	}
+	if(data_fim.getDate() != dia_fim && (data_fim.getMonth()+1) != mes_fim  && elemento_data_final.value.length == 10){		
+		elemento_msg.innerText = "Preencha a Data Final corretamente!";
+		elemento_data_final.value = [data_fim.getDate(), "/", data_fim.getMonth() + 1, "/", data_fim.getFullYear()].join('');
+	}
+
+	var diferenca = /*Math.abs*/(data_fim.getTime() - data_ini.getTime());
 	var dias = Math.ceil(diferenca / (1000 * 60 * 60 * 24));
 	elemento_num_dias3.value = !isNaN(dias)? dias+1: "--";
 

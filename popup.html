@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Calculadora de datas</title>
+    <link rel="stylesheet" href="styles/w3css.css">
     <style>
         .dia {font-family: helvetica, arial; font-size: 8pt; color: #FFFFFF}
         .data {font-family: helvetica, arial; font-size: 8pt; text-decoration:none; color:#191970}
@@ -13,11 +14,11 @@
         #content{
             display: block;
             background-color: rgb(69, 114, 116);
-            /*border: 0px solid rgb(2, 24, 54);*/
+            border: 0px solid rgb(2, 24, 54);
             box-shadow: -5px -6px 2px #dcc0c0;
             border-radius: 9px;
-            padding: 20px;
-			width: 380px;
+            padding: 10px;
+            width: 380px;
         }
         #abas{
 			background-color: #ffc107;
@@ -86,7 +87,7 @@
         }
         input[type="text"], input[type="number"]{
             display: block;
-            border: 1px solid black;
+            border: 0px solid black;
             height: 15px;
             width: 73px;
             padding: 10px;
@@ -118,6 +119,7 @@
 		}
         span#msg{
             color: red;
+            margin-left: 27px;
         }
 
         table, th, td {
@@ -130,9 +132,7 @@
             float: left;
         }
         /* ========================================== ABA DE CH PROPORCIONAL =============== */
-        #conteudo_folha1 {
-
-        }
+        
         #conteudo_folha1 #entrada{
             display: block;
             margin-right: 10px;
@@ -210,10 +210,11 @@
         #conteudo_folha3 .selected{                                            
             background-color: royalblue;
         }
+       
     </style>
 </head>
 <body>
-    <div id="content">        
+    <div id="content" class="w3-animate-left">        
         <div id="abas" class="calcs">            
             <a  href="#"  id="aba2" class="abas_itens">Calculadora de datas</a>    
             <a href="#" id="aba1" class="abas_itens">CH proporcional</a>
@@ -228,7 +229,7 @@
                     </div > 
                     <div class="colunas">                   
                         <label for="num_dias1" >Nº de dias:</label>
-                        <input class="campos_txt"  type="number" id="num_dias1" name="num_dias1" value="" autofocus autocomplete="off">
+                        <input class="campos_txt"  type="number" id="num_dias1" name="num_dias1" value="" autofocus autocomplete="off" min=0>
                     </div > 
                     <div class="colunas">                   
                         <label for="data_prevista1" >Data Prevista:</label>
@@ -243,7 +244,7 @@
                     </div > 	
                     <div class="colunas">     
                         <label for="num_dias2">Nº de dias:</label>
-                        <input class="campos_txt" type="number" id="num_dias2" name="num_dias2" value="" autocomplete="off">
+                        <input class="campos_txt" type="number" id="num_dias2" name="num_dias2" value="" autocomplete="off" min=0>
                     </div > 
                     <div class="colunas"> 
                         <label for="data_prevista2">Data Prevista:</label>
@@ -334,9 +335,10 @@
                     </div>    
                       
                 </div>    
-
+                
             </div>
         </div>
+        
     </div>
     <script type="text/javascript" src="scripts/core.js"></script>
     <script type="text/javascript" src="scripts/md5.js"></script>
