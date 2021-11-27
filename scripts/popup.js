@@ -204,8 +204,10 @@ function calcular_data_qq_mais_dias(event) {
 	
 	if(data_ins.getDate() != dia && (data_ins.getMonth()+1) != mes && elemento_data_inicial_qq.value.length == 10){		
 		//elemento_msg.innerText = "Preencha a Data Inicial corretamente!";
-		elemento_data_inicial_qq.value = [data_ins.getDate(), "/", data_ins.getMonth() + 1, "/", data_ins.getFullYear()].join('');
-
+		elemento_data_inicial_qq.value = !isNaN(data_ins.getDate()) ? [data_ins.getDate(), "/", data_ins.getMonth() + 1, "/", data_ins.getFullYear()].join('') : "";
+		if( isNaN(data_ins.getDate())){
+			elemento_msg.innerText = "Preencha a Data corretamente!";
+		}
 	}
 
 	data_ins.setDate(data_ins.getDate() + num_dias2 - 1);  
@@ -235,20 +237,31 @@ function calcular_duas_datas() {
 	
 	var data_ini = new Date( [mes_ini, "/", dia_ini, "/", ano_ini].join('') );            
 	var data_fim = new Date( [mes_fim, "/", dia_fim, "/", ano_fim].join('') );            
-
+		
+	
 	console.log("DAY>: " +  data_ini.getDate() + " mes: " + (data_ini.getMonth() + 1));
-	if(data_ini.getDate() != dia_ini && (data_ini.getMonth()+1) != mes_ini && elemento_data_inicial2.value.length == 10){		
-		elemento_msg.innerText = "Preencha a Data Inicial corretamente!";
-		elemento_data_inicial2.value = [data_ini.getDate(), "/", data_ini.getMonth() + 1, "/", data_ini.getFullYear()].join('');
+	if(data_ini.getDate() != dia_ini && (data_ini.getMonth()+1) != mes_ini && array_data_inicial2.length == 3){		
+		//elemento_msg.innerText = "Preencha a Data Inicial corretamente!";
+		elemento_data_inicial2.value = !isNaN(data_ini.getDate()) ? [data_ini.getDate(), "/", data_ini.getMonth() + 1, "/", data_ini.getFullYear()].join('') : "";
+		if( isNaN(data_ini.getDate()) ){
+			elemento_msg.innerText = "Preencha a Data corretamente!";
+		}
 
 	}
-	if(data_fim.getDate() != dia_fim && (data_fim.getMonth()+1) != mes_fim  && elemento_data_final.value.length == 10){		
-		elemento_msg.innerText = "Preencha a Data Final corretamente!";
-		elemento_data_final.value = [data_fim.getDate(), "/", data_fim.getMonth() + 1, "/", data_fim.getFullYear()].join('');
+	if(data_fim.getDate() != dia_fim && (data_fim.getMonth()+1) != mes_fim  && array_data_final.length == 3){		
+		//elemento_msg.innerText = "Preencha a Data Final corretamente!";
+		elemento_data_final.value = !isNaN(data_fim.getDate()) ? [data_fim.getDate(), "/", data_fim.getMonth() + 1, "/", data_fim.getFullYear()].join('') : "";
+		if( isNaN(data_fim.getDate())){
+			elemento_msg.innerText = "Preencha a Data corretamente!";
+		}
 	}
-
-	var diferenca = /*Math.abs*/(data_fim.getTime() - data_ini.getTime());
-	var dias = Math.ceil(diferenca / (1000 * 60 * 60 * 24));
-	elemento_num_dias3.value = !isNaN(dias)? dias+1: "--";
+	
+	if(array_data_inicial2.length == 3 && array_data_final.length == 3){	
+		var diferenca = /*Math.abs*/(data_fim.getTime() - data_ini.getTime());
+		var dias = Math.ceil(diferenca / (1000 * 60 * 60 * 24));
+		elemento_num_dias3.value = !isNaN(dias)? dias+1: "--";
+	}else{
+		elemento_num_dias3.value = "--";
+	}
 
 }

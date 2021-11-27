@@ -91,7 +91,7 @@
             height: 15px;
             width: 73px;
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 0px;
             font-size: small;
         }
         input.resultado{
@@ -160,6 +160,7 @@
         }
         #conteudo_folha3 textarea{
             resize: none;
+            width: 190px;
         }
         #conteudo_folha3 div#tabela_div{
             margin-bottom: 15px;
@@ -176,6 +177,18 @@
             border: 1px solid black;
             height: 8px;
             width: 65px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: small;
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+
+         #conteudo_folha3 input[type="date"]{
+            display: block;
+            border: 1px solid black;
+            height: 8px;
+            width: 115px;
             padding: 10px;
             border-radius: 5px;
             font-size: small;
@@ -274,13 +287,13 @@
                 <form action="#">
                     <div class="ladoalado " id="entrada">    
                         <label for="data_de_lotacao" >Dia de Lotação:</label>
-                        <input class="campos_txt"  type="number" id="data_de_lotacao" name="fname"  maxlength="10" value="" max=30 autofocus autocomplete="off" >
+                        <input class="campos_txt"  type="number" id="data_de_lotacao" name="fname"  maxlength="10" value="" max=30 autofocus autocomplete="off" min=0>
                         
                         <label for="ch_anterior">CH Anterior:</label>
-                        <input class="campos_txt" type="number" id="ch_anterior" name="ch_anterior" value="" autocomplete="off">
+                        <input class="campos_txt" type="number" id="ch_anterior" name="ch_anterior" value="" autocomplete="off" min=0>
                         
                         <label for="nova_ch" >Nova CH:</label>
-                        <input class="campos_txt" type="number" id="nova_ch" name="nova_ch" value="" autocomplete="off">
+                        <input class="campos_txt" type="number" id="nova_ch" name="nova_ch" value="" autocomplete="off" min=0>
                     </div>
                     <div  class="ladoalado " id="resultado">
                         <label for="ch_prop">CH Proporcional (horas):</label>
@@ -322,9 +335,9 @@
                     <div id="" class="ladoalado">                
                         <div >
                             <!--<label for="data_ini" >Início:</label> -->
-                            <input id="lembrete_campo_data_ini" placeholder="inicio" type="text" id="data_ini" name="data_ini"  maxlength="10" value="" autocomplete="off" >
+                            <input id="lembrete_campo_data_ini" placeholder="inicio" type="date" id="data_ini" name="data_ini"  maxlength="10" value="" autocomplete="off" >
                             <!-- <label for="data_fim" >Final:</label> -->
-                            <input id="lembrete_campo_data_fim"  placeholder="final" type="text" id="data_fim" name="data_fim"  maxlength="10" value="" autocomplete="off">
+                            <input id="lembrete_campo_data_fim"  placeholder="final" type="date" id="data_fim" name="data_fim"  maxlength="10" value="" autocomplete="off">
                             <img src="/Icons/new.png" id="btn_novo" class="maozinha" width="24" height="24"/>
                             <img src="/Icons/disk.png" id="btn_lembrar" class="maozinha" width="24" height="24"/>
                             <img src="/Icons/trash.png" id="btn_del"  class="maozinha" width="24" height="24"/>
