@@ -251,9 +251,9 @@ function calcular_duas_datas() {
 	
 	if(array_data_inicial2.length == 3){
 		if( !isNaN(data_ini.getDate()) ){			
-			if(data_ini.getDate() != dia_ini && (data_ini.getMonth()+1) != mes_ini){				
+			if(data_ini.getDate() != dia_ini && (data_ini.getMonth()+1) != mes_ini && elemento_data_inicial2.value.length == 10){				
 				elemento_data_inicial2.value =  "";
-				elemento_msg.innerText = ["O mês ", mes_ini, " não contém ", dia_ini, " dias. Corrija a data."].join('');		
+				elemento_msg.innerText = ["O mês ", mes_ini, " não contém ", dia_ini, " dias. Corrija a data."].join('');					
 			}			
 		}else{		
 			elemento_data_inicial2.value = "";			
@@ -263,7 +263,7 @@ function calcular_duas_datas() {
 
 	if(array_data_final.length == 3){
 		if(!isNaN(data_fim.getDate())){					
-			if(data_fim.getDate() != dia_fim && (data_fim.getMonth()+1) != mes_fim){		
+			if(data_fim.getDate() != dia_fim && (data_fim.getMonth()+1) != mes_fim && elemento_data_final.value.length == 10){		
 				elemento_data_final.value = "";
 				elemento_msg.innerText = ["O mês ", mes_fim, " não contém ", dia_fim, " dias. Corrija a data."].join('');
 			}
