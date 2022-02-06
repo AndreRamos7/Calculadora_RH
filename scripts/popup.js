@@ -139,11 +139,18 @@ elemento_data_inicial_qq.addEventListener("keyup", (event) => {
 		mensagem("Digite apenas valores numéricos. A '/' é automática.");
 	}*/
 });
+elemento_data_inicial_qq.addEventListener("blur", (event) => {	
+	elemento_msg.innerText = "";
+});
+
 elemento_num_dias2.addEventListener("keyup", (event) => {	
 	calcular_data_qq_mais_dias();
 });
 elemento_num_dias2.addEventListener("change", (event) => {	
 	calcular_data_qq_mais_dias();
+});
+elemento_num_dias2.addEventListener("blur", (event) => {	
+	elemento_msg.innerText = "";
 });
 
 elemento_data_prevista2.addEventListener("keyup", (event) => {
@@ -152,6 +159,10 @@ elemento_data_prevista2.addEventListener("keyup", (event) => {
 elemento_data_inicial2.addEventListener("keyup", (event) => {	
 	calcular_duas_datas();
 });
+elemento_data_inicial2.addEventListener("blur", (event) => {	
+	elemento_msg.innerText = "";
+});
+
 
 elemento_num_dias3.addEventListener("keyup", (event) => {
 	calcular_duas_datas();
@@ -159,9 +170,15 @@ elemento_num_dias3.addEventListener("keyup", (event) => {
 elemento_num_dias3.addEventListener("change", (event) => {
 	calcular_duas_datas();
 });
+elemento_num_dias3.addEventListener("blur", (event) => {	
+	elemento_msg.innerText = "";
+});
 
 elemento_data_final.addEventListener("keyup", (event) => {
 	calcular_duas_datas();
+});
+elemento_data_final.addEventListener("blur", (event) => {	
+	elemento_msg.innerText = "";
 });
 
 elemento_num_dias1.addEventListener('keyup', (event) => {
@@ -170,6 +187,8 @@ elemento_num_dias1.addEventListener('keyup', (event) => {
 elemento_num_dias1.addEventListener('change', (event) => {
 	calcular_diferenca_pra_hoje();
 });
+
+
 
 function calcular_diferenca_pra_hoje() {
 	// pega a data de hoje e mostra no campo de texto
@@ -188,6 +207,7 @@ function calcular_diferenca_pra_hoje() {
 
 	var data_prevista1 = [dia, "/", mes, "/", ano].join('');
 	elemento_data_prevista1.value = data_prevista1;
+	elemento_msg.innerText = "";
 }
 
 function calcular_data_qq_mais_dias(event) {
@@ -222,7 +242,7 @@ function calcular_data_qq_mais_dias(event) {
 	ano = (!isNaN(data_ins.getFullYear()))? data_ins.getFullYear(): "";
 	var data_prevista2 = [dia, "/", mes, "/", ano].join('');
 	elemento_data_prevista2.value = data_prevista2;
-   
+	//setTimeout(() => {elemento_msg.innerText = "";}, 5000);
 }
 
 
@@ -275,7 +295,11 @@ function calcular_duas_datas() {
 		}
 	}
 
-	if(array_data_inicial2.length == 3 && array_data_final.length == 3 && !erro_de_extrapolamento_do_mes){	
+	if(array_data_inicial2.length == 3 && 
+		array_data_final.length == 3 && 
+		!erro_de_extrapolamento_do_mes && 
+		ano_ini.length == 4 && 
+		ano_fim.length == 4){	
 		var diferenca = /*Math.abs*/(data_fim.getTime() - data_ini.getTime());
 		var dias = Math.ceil(diferenca / (1000 * 60 * 60 * 24));
 		elemento_num_dias3.value = !isNaN(dias)? dias+1: "--";
@@ -283,4 +307,5 @@ function calcular_duas_datas() {
 		elemento_num_dias3.value = "--";
 	}
 
+	//setTimeout(() => {elemento_msg.innerText = "";}, 5000);
 }
